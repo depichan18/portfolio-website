@@ -21,7 +21,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="hero" className="min-h-screen flex items-center justify-between relative overflow-hidden bg-gradient-to-br from-cyan-900 via-teal-800 to-blue-900 pt-20">
+    <div className="min-h-screen flex items-center justify-between relative overflow-hidden bg-gradient-to-br from-cyan-900 via-teal-800 to-blue-900 pt-20 section-content">
       {/* Animated background shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div 
@@ -180,7 +180,7 @@ const Hero = () => {
           <ChevronDown className="w-6 h-6" />
         </button>
       </div>
-    </section>
+    </div>
   );
 };
 

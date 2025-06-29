@@ -149,7 +149,7 @@ const Projects = () => {
     : projects.filter(project => project.category === activeCategory);
 
   return (
-    <section id="projects" className="py-20 pt-32 px-6 relative overflow-hidden">
+    <div className="py-20 pt-32 px-6 relative overflow-hidden section-content">
       {/* Animated Background Gradient - Clear Blue and Cyan */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-sky-100 via-blue-100 to-cyan-100"></div>
@@ -432,7 +432,7 @@ const Projects = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

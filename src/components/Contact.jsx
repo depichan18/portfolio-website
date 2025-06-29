@@ -24,7 +24,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-cyan-900 via-teal-800 to-blue-900 relative overflow-hidden">
+    <div className="min-h-screen py-20 pt-32 bg-gradient-to-br from-cyan-900 via-teal-800 to-blue-900 relative overflow-hidden">
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-tr from-cyan-800/60 via-teal-700/40 to-blue-800/50 opacity-80 animate-pulse-slow"></div>
       
@@ -277,7 +277,7 @@ const Contact = () => {
           </p>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 

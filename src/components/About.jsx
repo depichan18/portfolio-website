@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-white via-cyan-200 via-blue-300 to-teal-800 relative overflow-hidden">
+    <div className="min-h-screen py-20 pt-32 bg-gradient-to-br from-white via-cyan-200 via-blue-300 to-teal-800 relative overflow-hidden section-content">
       {/* Main Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-tr from-cyan-50 via-blue-200 to-teal-700 opacity-85 animate-gradient-flow"></div>
       
@@ -211,7 +211,7 @@ const About = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   );
 };
 
