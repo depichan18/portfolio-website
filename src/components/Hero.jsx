@@ -3,6 +3,13 @@ import { ChevronDown, Github, Linkedin, Mail, Instagram } from "lucide-react";
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  // Get base URL for images (works for both dev and production)
+  const getImagePath = (imageName) => {
+    const isDev = import.meta.env.DEV;
+    const base = isDev ? '' : '/portfolio-website';
+    return `${base}/images/${imageName}`;
+  };
 
   useEffect(() => {
     const handleMouseMove = (e) => {
@@ -125,7 +132,7 @@ const Hero = () => {
                       <div className="w-52 h-52 rounded-full bg-gradient-to-br from-white/20 to-cyan-200/30 p-1 shadow-xl">
                         <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
                           <img 
-                            src="/images/profile.jpg" 
+                            src={getImagePath('profile.jpg')}
                             alt="Devi Rosa Aprilla" 
                             className="w-full h-full object-cover rounded-full"
                             onError={(e) => {
