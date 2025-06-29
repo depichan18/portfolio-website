@@ -2,6 +2,56 @@ import React, { useState } from 'react';
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
+  
+  // State for testimonials
+  const [testimonials, setTestimonials] = useState([
+    {
+      id: 1,
+      name: "John Doe",
+      role: "Software Developer",
+      message: "Amazing mathematical approach to problem solving! The projects show great attention to detail and innovative thinking.",
+      avatar: "👨‍💻",
+      timestamp: new Date().toLocaleDateString()
+    },
+    {
+      id: 2,
+      name: "Sarah Wilson",
+      role: "Data Scientist",
+      message: "Impressive combination of mathematics and programming. The Hill Cipher implementation was particularly well-documented.",
+      avatar: "👩‍🔬",
+      timestamp: new Date().toLocaleDateString()
+    }
+  ]);
+  
+  // State for testimonial form
+  const [testimonialForm, setTestimonialForm] = useState({
+    name: '',
+    role: '',
+    message: ''
+  });
+
+  const handleTestimonialChange = (e) => {
+    setTestimonialForm({
+      ...testimonialForm,
+      [e.target.name]: e.target.value
+    });
+  };
+
+  const handleTestimonialSubmit = (e) => {
+    e.preventDefault();
+    if (testimonialForm.name && testimonialForm.message) {
+      const newTestimonial = {
+        id: testimonials.length + 1,
+        name: testimonialForm.name,
+        role: testimonialForm.role || 'Visitor',
+        message: testimonialForm.message,
+        avatar: "👤",
+        timestamp: new Date().toLocaleDateString()
+      };
+      setTestimonials([newTestimonial, ...testimonials]);
+      setTestimonialForm({ name: '', role: '', message: '' });
+    }
+  };
 
   // Projects data - easily add new projects here
   const projects = [
@@ -210,7 +260,7 @@ const Projects = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center">
+        <div className="text-center mb-16">
           <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-cyan-100/50 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-800 mb-4">
               Interested in Collaboration?
@@ -222,6 +272,106 @@ const Projects = () => {
             <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-full hover:from-cyan-600 hover:to-teal-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-200/50">
               Get In Touch
             </button>
+          </div>
+        </div>
+
+        {/* Testimonials Section */}
+        <div className="grid md:grid-cols-2 gap-12 mb-16">
+          {/* Testimonial Form */}
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-cyan-100/50 shadow-lg">
+            <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <span className="w-2 h-2 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full mr-3"></span>
+              Share Your Thoughts
+            </h3>
+            <form onSubmit={handleTestimonialSubmit} className="space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label htmlFor="testimonial-name" className="block text-sm font-medium text-gray-700 mb-2">
+                    Name *
+                  </label>
+                  <input
+                    type="text"
+                    id="testimonial-name"
+                    name="name"
+                    value={testimonialForm.name}
+                    onChange={handleTestimonialChange}
+                    required
+                    className="w-full px-4 py-2 border border-cyan-200/50 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-300 bg-white/80 backdrop-blur-sm text-sm"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="testimonial-role" className="block text-sm font-medium text-gray-700 mb-2">
+                    Role (Optional)
+                  </label>
+                  <input
+                    type="text"
+                    id="testimonial-role"
+                    name="role"
+                    value={testimonialForm.role}
+                    onChange={handleTestimonialChange}
+                    className="w-full px-4 py-2 border border-cyan-200/50 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-300 bg-white/80 backdrop-blur-sm text-sm"
+                    placeholder="Your role/title"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="testimonial-message" className="block text-sm font-medium text-gray-700 mb-2">
+                  Testimonial *
+                </label>
+                <textarea
+                  id="testimonial-message"
+                  name="message"
+                  value={testimonialForm.message}
+                  onChange={handleTestimonialChange}
+                  required
+                  rows={4}
+                  className="w-full px-4 py-2 border border-cyan-200/50 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-300 resize-none bg-white/80 backdrop-blur-sm text-sm"
+                  placeholder="Share your thoughts about the projects or collaboration..."
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white rounded-lg font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-200/50 text-sm"
+              >
+                <span>💬</span>
+                Submit Testimonial
+              </button>
+            </form>
+          </div>
+
+          {/* Display Testimonials */}
+          <div className="space-y-6">
+            <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
+              <span className="w-2 h-2 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full mr-3"></span>
+              What People Say
+            </h3>
+            <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
+              {testimonials.map((testimonial) => (
+                <div 
+                  key={testimonial.id}
+                  className="bg-white/70 backdrop-blur-sm rounded-xl p-6 border border-gray-100/50 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-100 to-teal-100 rounded-full flex items-center justify-center text-2xl">
+                      {testimonial.avatar}
+                    </div>
+                    <div className="flex-1">
+                      <div className="flex justify-between items-start mb-2">
+                        <div>
+                          <h4 className="font-semibold text-gray-800 text-sm">{testimonial.name}</h4>
+                          <p className="text-xs text-gray-500">{testimonial.role}</p>
+                        </div>
+                        <span className="text-xs text-gray-400">{testimonial.timestamp}</span>
+                      </div>
+                      <p className="text-gray-600 text-sm leading-relaxed font-light">
+                        "{testimonial.message}"
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>

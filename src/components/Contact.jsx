@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Github, Linkedin, Mail, Instagram, ExternalLink } from 'lucide-react';
+import { Github, Linkedin, Mail, Instagram, MapPin, Phone } from 'lucide-react';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -24,225 +24,239 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-teal-50 via-cyan-100/40 to-blue-50/50 relative overflow-hidden">
-      {/* Mathematical Background Elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-24 left-12 text-7xl text-teal-100/25 font-light">∑</div>
-        <div className="absolute top-56 right-16 text-6xl text-cyan-100/20 font-light">∮</div>
-        <div className="absolute bottom-32 left-24 text-5xl text-blue-100/30 font-light">∇</div>
-        <div className="absolute bottom-56 right-32 text-8xl text-green-100/15 font-light">∞</div>
-        <div className="absolute top-1/2 left-1/3 text-4xl text-teal-100/25 font-light">λ</div>
-        <div className="absolute top-1/4 right-1/4 text-3xl text-cyan-100/30 font-light">Ω</div>
+    <section id="contact" className="min-h-screen py-20 pt-32 relative overflow-hidden">
+      {/* Animated Background Gradient */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-teal-900 via-teal-800 to-cyan-900"></div>
+        <div 
+          className="absolute inset-0 opacity-30"
+          style={{
+            background: `
+              radial-gradient(circle at 20% 80%, rgba(6, 182, 212, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(20, 184, 166, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.15) 0%, transparent 50%)
+            `,
+            animation: 'gradientMove 15s ease-in-out infinite'
+          }}
+        ></div>
+        <div 
+          className="absolute inset-0 opacity-20"
+          style={{
+            background: `
+              linear-gradient(45deg, rgba(6, 182, 212, 0.05) 0%, transparent 25%, rgba(20, 184, 166, 0.05) 50%, transparent 75%, rgba(59, 130, 246, 0.05) 100%)
+            `,
+            animation: 'gradientShift 20s linear infinite'
+          }}
+        ></div>
       </div>
 
-      <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
-          <div className="inline-block">
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent mb-4">
-              Get In Touch
-            </h2>
-            <div className="w-32 h-0.5 bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 mx-auto rounded-full mb-6"></div>
-          </div>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light">
-            Let's explore the possibilities where mathematics meets technology
+      {/* Mathematical Background with Animation */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-32 left-8 text-9xl text-teal-400/20 font-light animate-pulse">∫</div>
+        <div className="absolute bottom-32 right-8 text-9xl text-cyan-400/20 font-light animate-bounce" style={{ animationDuration: '3s' }}>∑</div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-6xl text-blue-400/15 font-light animate-spin" style={{ animationDuration: '20s' }}>∞</div>
+        <div className="absolute top-20 right-20 text-4xl text-teal-300/25 font-light animate-pulse" style={{ animationDelay: '2s' }}>∂</div>
+        <div className="absolute bottom-20 left-20 text-5xl text-cyan-300/20 font-light animate-bounce" style={{ animationDuration: '4s', animationDelay: '1s' }}>π</div>
+        <div className="absolute top-1/3 left-1/4 text-3xl text-blue-300/25 font-light animate-pulse" style={{ animationDelay: '3s' }}>θ</div>
+        <div className="absolute bottom-1/3 right-1/4 text-4xl text-teal-400/20 font-light animate-bounce" style={{ animationDuration: '5s', animationDelay: '0.5s' }}>√</div>
+      </div>
+
+      <style jsx>{`
+        @keyframes gradientMove {
+          0%, 100% {
+            transform: scale(1) rotate(0deg);
+          }
+          50% {
+            transform: scale(1.05) rotate(180deg);
+          }
+        }
+        
+        @keyframes gradientShift {
+          0% {
+            transform: translateX(-50%);
+          }
+          100% {
+            transform: translateX(50%);
+          }
+        }
+      `}</style>
+
+      <div className="container mx-auto px-6 relative z-10 max-w-4xl">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-light bg-gradient-to-r from-teal-200 via-cyan-200 to-blue-200 bg-clip-text text-transparent mb-6">
+            Let's Connect
+          </h2>
+          <div className="w-16 h-px bg-gradient-to-r from-teal-400 to-cyan-400 mx-auto mb-6"></div>
+          <p className="text-teal-100 max-w-xl mx-auto font-light text-lg">
+            Ready to explore mathematical solutions together?
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
+        {/* Main Content */}
+        <div className="grid md:grid-cols-5 gap-12 mb-16">
           {/* Contact Form */}
-          <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-cyan-100/50">
-            <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-              <span className="w-2 h-2 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full mr-3"></span>
-              Send a Message
-            </h3>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-cyan-200/50 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-300 bg-white/80 backdrop-blur-sm"
-                  placeholder="Your Name"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 border border-cyan-200/50 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-300 bg-white/80 backdrop-blur-sm"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 border border-cyan-200/50 rounded-lg focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400 transition-all duration-300 resize-none bg-white/80 backdrop-blur-sm"
-                  placeholder="Your message here..."
-                />
-              </div>
-              
-              <button
-                type="submit"
-                className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white rounded-lg font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-200/50"
-              >
-                <span className="text-xl">📧</span>
-                Send Message
-              </button>
-            </form>
+          <div className="md:col-span-3">
+            <div className="bg-gradient-to-br from-white/15 via-teal-100/8 via-blue-100/6 to-white/3 backdrop-blur-sm rounded-3xl p-8 border border-teal-300/40 shadow-xl">
+              <form onSubmit={handleSubmit} className="space-y-8">
+                <div className="grid grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-teal-200">Name</label>
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-white/20 border-0 rounded-xl focus:ring-2 focus:ring-teal-400 transition-all duration-300 font-light text-white placeholder-teal-300"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-teal-200">Email</label>
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-white/20 border-0 rounded-xl focus:ring-2 focus:ring-teal-400 transition-all duration-300 font-light text-white placeholder-teal-300"
+                      placeholder="your@email.com"
+                    />
+                  </div>
+                </div>
+                
+                <div className="space-y-2">
+                  <label className="text-sm font-medium text-teal-200">Message</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={6}
+                    className="w-full px-4 py-3 bg-white/20 border-0 rounded-xl focus:ring-2 focus:ring-teal-400 transition-all duration-300 resize-none font-light text-white placeholder-teal-300"
+                    placeholder="Share your ideas..."
+                  />
+                </div>
+                
+                <button
+                  type="submit"
+                  className="w-full py-4 bg-gradient-to-r from-teal-500 to-cyan-500 text-white rounded-xl font-medium hover:scale-[1.02] transition-all duration-300 shadow-lg hover:from-teal-400 hover:to-cyan-400"
+                >
+                  Send Message
+                </button>
+              </form>
+            </div>
           </div>
 
           {/* Contact Info */}
-          <div className="space-y-6">
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-teal-100/50">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                <span className="w-2 h-2 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full mr-3"></span>
-                Contact Information
-              </h3>
-              
+          <div className="md:col-span-2 space-y-8">
+            {/* Direct Contact */}
+            <div className="bg-gradient-to-br from-white/15 via-teal-100/8 via-blue-100/6 to-white/3 backdrop-blur-sm rounded-3xl p-8 border border-teal-300/40 shadow-xl">
+              <h3 className="text-xl font-medium text-white mb-6">Direct Contact</h3>
               <div className="space-y-6">
-                <div className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 bg-gradient-to-br from-cyan-100 to-teal-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-xl text-cyan-600">📍</span>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-teal-400/20 rounded-full flex items-center justify-center">
+                    <MapPin className="w-5 h-5 text-teal-300" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Location</h4>
-                    <p className="text-gray-600 font-light">Surabaya, East Java, Indonesia</p>
+                    <p className="text-white font-medium">Surabaya, Indonesia</p>
+                    <p className="text-teal-200 text-sm">East Java</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 bg-gradient-to-br from-teal-100 to-blue-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-xl text-teal-600">✉️</span>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-cyan-400/20 rounded-full flex items-center justify-center">
+                    <Mail className="w-5 h-5 text-cyan-300" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Email</h4>
-                    <p className="text-gray-600 font-light">devi.rosa@example.com</p>
+                    <p className="text-white font-medium">devi.rosa@example.com</p>
+                    <p className="text-teal-200 text-sm">Email me anytime</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4 group">
-                  <div className="w-12 h-12 bg-gradient-to-br from-blue-100 to-green-100 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <span className="text-xl text-blue-600">📞</span>
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 bg-blue-400/20 rounded-full flex items-center justify-center">
+                    <Phone className="w-5 h-5 text-blue-300" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-gray-800">Phone</h4>
-                    <p className="text-gray-600 font-light">+62 xxx-xxx-xxxx</p>
+                    <p className="text-white font-medium">+62 xxx-xxx-xxxx</p>
+                    <p className="text-teal-200 text-sm">Available 9AM - 6PM</p>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="bg-white/70 backdrop-blur-sm rounded-2xl shadow-xl p-8 border border-blue-100/50">
-              <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
-                <span className="w-2 h-2 bg-gradient-to-r from-blue-500 to-green-500 rounded-full mr-3"></span>
-                Let's Connect
-              </h3>
-              
-              <p className="text-gray-600 mb-6 font-light">
-                Ready to collaborate on mathematical solutions or discuss exciting projects? 
-                Feel free to reach out through any of these platforms!
-              </p>
-              
-              <div className="space-y-4">
+            {/* Social Links */}
+            <div className="bg-gradient-to-br from-white/15 via-teal-100/8 via-blue-100/6 to-white/3 backdrop-blur-sm rounded-3xl p-8 border border-teal-300/40 shadow-xl">
+              <h3 className="text-xl font-medium text-white mb-6">Social Links</h3>
+              <div className="grid grid-cols-2 gap-4">
                 <a
                   href="https://github.com/devipichan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 border border-gray-200/50 rounded-xl hover:border-gray-300 hover:bg-gray-50/50 transition-all duration-300 group backdrop-blur-sm"
+                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/20 hover:border-white/40 hover:bg-white/10 transition-all duration-300 group"
                 >
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-100 to-gray-200 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Github className="w-5 h-5 text-gray-600 group-hover:text-gray-800" />
+                  <div className="w-12 h-12 bg-gray-400/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Github className="w-6 h-6 text-gray-300" />
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-gray-800">GitHub</div>
-                    <div className="text-sm text-gray-600">@devipichan</div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-gray-600" />
+                  <span className="text-sm font-medium text-white">GitHub</span>
                 </a>
                 
                 <a
                   href="https://linkedin.com/in/devi-rosa-aprilla"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 border border-blue-200/50 rounded-xl hover:border-blue-300 hover:bg-blue-50/50 transition-all duration-300 group backdrop-blur-sm"
+                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/20 hover:border-blue-400/40 hover:bg-blue-400/10 transition-all duration-300 group"
                 >
-                  <div className="w-10 h-10 bg-gradient-to-br from-blue-100 to-blue-200 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Linkedin className="w-5 h-5 text-blue-600 group-hover:text-blue-800" />
+                  <div className="w-12 h-12 bg-blue-400/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Linkedin className="w-6 h-6 text-blue-300" />
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-gray-800">LinkedIn</div>
-                    <div className="text-sm text-gray-600">Devi Rosa Aprilla</div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-600" />
+                  <span className="text-sm font-medium text-white">LinkedIn</span>
                 </a>
                 
                 <a
                   href="mailto:devi.rosa@example.com"
-                  className="flex items-center gap-4 p-4 border border-teal-200/50 rounded-xl hover:border-teal-300 hover:bg-teal-50/50 transition-all duration-300 group backdrop-blur-sm"
+                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/20 hover:border-teal-400/40 hover:bg-teal-400/10 transition-all duration-300 group"
                 >
-                  <div className="w-10 h-10 bg-gradient-to-br from-teal-100 to-teal-200 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Mail className="w-5 h-5 text-teal-600 group-hover:text-teal-800" />
+                  <div className="w-12 h-12 bg-teal-400/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Mail className="w-6 h-6 text-teal-300" />
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-gray-800">Email</div>
-                    <div className="text-sm text-gray-600">devi.rosa@example.com</div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-teal-600" />
+                  <span className="text-sm font-medium text-white">Email</span>
                 </a>
                 
                 <a
                   href="https://instagram.com/devipichan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-4 p-4 border border-pink-200/50 rounded-xl hover:border-pink-300 hover:bg-pink-50/50 transition-all duration-300 group backdrop-blur-sm"
+                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/20 hover:border-pink-400/40 hover:bg-pink-400/10 transition-all duration-300 group"
                 >
-                  <div className="w-10 h-10 bg-gradient-to-br from-pink-100 to-pink-200 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Instagram className="w-5 h-5 text-pink-600 group-hover:text-pink-800" />
+                  <div className="w-12 h-12 bg-pink-400/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Instagram className="w-6 h-6 text-pink-300" />
                   </div>
-                  <div className="flex-1">
-                    <div className="font-semibold text-gray-800">Instagram</div>
-                    <div className="text-sm text-gray-600">@devipichan</div>
-                  </div>
-                  <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-pink-600" />
+                  <span className="text-sm font-medium text-white">Instagram</span>
                 </a>
-              </div>
-
-              <div className="mt-6 pt-6 border-t border-gray-200">
-                <p className="text-center text-gray-600 text-sm font-light">
-                  🚀 Always excited to discuss mathematics, programming, and innovative projects!
-                </p>
               </div>
             </div>
           </div>
         </div>
 
+        {/* Mathematical Quote */}
+        <div className="text-center py-8 border-t border-white/20">
+          <div className="inline-flex items-center gap-4 text-white">
+            <span className="text-2xl text-teal-300">∂</span>
+            <p className="font-light italic">
+              "Mathematics is the language in which God has written the universe"
+            </p>
+            <span className="text-2xl text-cyan-300">∫</span>
+          </div>
+          <p className="text-sm text-teal-200 mt-2">- Galileo Galilei</p>
+        </div>
+
         {/* Footer */}
-        <div className="text-center mt-16 pt-8 border-t border-gray-200">
-          <p className="text-gray-600">
-            © 2025 Devi Rosa Aprilla. Made with ❤️ and lots of ☕
+        <div className="text-center pt-8">
+          <p className="text-teal-200 font-light">
+            © 2025 Devi Rosa Aprilla • Made with 💝 and ∞ curiosity
           </p>
         </div>
       </div>
