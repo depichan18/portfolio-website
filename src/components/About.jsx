@@ -2,9 +2,92 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-blue-200 via-blue-400 to-blue-800 relative overflow-hidden animate-gradient-x">
-      {/* Animated Background Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-100 to-blue-600 opacity-80 animate-gradient-shift"></div>
+    <section id="about" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-white via-cyan-200 via-blue-300 to-teal-800 relative overflow-hidden">
+      {/* Main Animated Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-tr from-cyan-50 via-blue-200 to-teal-700 opacity-85 animate-gradient-flow"></div>
+      
+      {/* Live Animated Gradient Layers */}
+      <div 
+        className="absolute inset-0 opacity-50"
+        style={{
+          background: `
+            radial-gradient(circle at 20% 30%, rgba(6, 182, 212, 0.4) 0%, transparent 50%),
+            radial-gradient(circle at 80% 70%, rgba(20, 184, 166, 0.3) 0%, transparent 60%),
+            radial-gradient(circle at 50% 80%, rgba(59, 130, 246, 0.25) 0%, transparent 45%)
+          `,
+          animation: 'gradientOrbit 20s ease-in-out infinite'
+        }}
+      ></div>
+      
+      <div 
+        className="absolute inset-0 opacity-40"
+        style={{
+          background: `
+            linear-gradient(45deg, rgba(255, 255, 255, 0.3) 0%, transparent 25%, rgba(6, 182, 212, 0.2) 50%, transparent 75%, rgba(20, 184, 166, 0.25) 100%)
+          `,
+          animation: 'gradientRipple 15s ease-in-out infinite reverse'
+        }}
+      ></div>
+      
+      <div 
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: `
+            conic-gradient(from 0deg at 50% 50%, rgba(6, 182, 212, 0.1) 0deg, transparent 90deg, rgba(20, 184, 166, 0.15) 180deg, transparent 270deg, rgba(14, 165, 233, 0.1) 360deg)
+          `,
+          animation: 'gradientSpin 30s linear infinite'
+        }}
+      ></div>
+
+      <style jsx>{`
+        @keyframes gradientFlow {
+          0%, 100% {
+            transform: scale(1) translate(0, 0);
+            opacity: 0.85;
+          }
+          50% {
+            transform: scale(1.05) translate(-10px, 10px);
+            opacity: 0.7;
+          }
+        }
+        
+        @keyframes gradientOrbit {
+          0%, 100% {
+            transform: rotate(0deg) scale(1);
+          }
+          25% {
+            transform: rotate(90deg) scale(1.1);
+          }
+          50% {
+            transform: rotate(180deg) scale(0.9);
+          }
+          75% {
+            transform: rotate(270deg) scale(1.05);
+          }
+        }
+        
+        @keyframes gradientRipple {
+          0%, 100% {
+            transform: translateY(0) scaleY(1);
+          }
+          50% {
+            transform: translateY(-20px) scaleY(1.1);
+          }
+        }
+        
+        @keyframes gradientSpin {
+          0% {
+            transform: rotate(0deg);
+          }
+          100% {
+            transform: rotate(360deg);
+          }
+        }
+        
+        .animate-gradient-flow {
+          animation: gradientFlow 12s ease-in-out infinite;
+        }
+      `}</style>
       
       {/* Mathematical Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
