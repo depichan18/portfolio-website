@@ -99,7 +99,7 @@ const Projects = () => {
     : projects.filter(project => project.category === activeCategory);
 
   return (
-    <section id="projects" className="py-20 pt-32 px-6 bg-gradient-to-br from-white via-blue-50/20 to-green-50/20 relative overflow-hidden">
+    <section id="projects" className="py-20 pt-32 px-6 bg-gradient-to-br from-cyan-50 via-sky-100/40 to-blue-50/50 relative overflow-hidden">
       {/* Mathematical Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-32 left-16 text-8xl text-blue-100/20 font-light transform rotate-12">∇</div>

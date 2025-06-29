@@ -24,7 +24,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-white via-teal-50/30 to-cyan-50/30 relative overflow-hidden">
+    <section id="contact" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-teal-50 via-cyan-100/40 to-blue-50/50 relative overflow-hidden">
       {/* Mathematical Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-24 left-12 text-7xl text-teal-100/25 font-light">∑</div>

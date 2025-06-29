@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-white via-cyan-50/30 to-teal-50/30 relative overflow-hidden">
+    <section id="about" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-blue-50 via-blue-100/40 to-indigo-50/50 relative overflow-hidden">
       {/* Mathematical Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 text-6xl text-cyan-100/40 font-light">∑</div>
