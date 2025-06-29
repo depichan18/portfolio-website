@@ -84,16 +84,16 @@ const Hero = () => {
 
             {/* Social Links */}
             <div className="flex gap-4">
-              <a href="https://github.com/devipichan" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-cyan-900 transition-all duration-300 hover:scale-110 border border-white/20">
+              <a href="https://github.com/depichan18" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-cyan-900 transition-all duration-300 hover:scale-110 border border-white/20">
                 <Github className="w-5 h-5" />
               </a>
-              <a href="https://linkedin.com/in/devi-rosa-aprilla" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-cyan-900 transition-all duration-300 hover:scale-110 border border-white/20">
+              <a href="https://linkedin.com/in/devirosa" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-cyan-900 transition-all duration-300 hover:scale-110 border border-white/20">
                 <Linkedin className="w-5 h-5" />
               </a>
-              <a href="mailto:devi.rosa@example.com" className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-cyan-900 transition-all duration-300 hover:scale-110 border border-white/20">
+              <a href="mailto:depichan18@gmail.com" className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-cyan-900 transition-all duration-300 hover:scale-110 border border-white/20">
                 <Mail className="w-5 h-5" />
               </a>
-              <a href="https://instagram.com/devipichan" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-cyan-900 transition-all duration-300 hover:scale-110 border border-white/20">
+              <a href="https://instagram.com/devirosaa24" target="_blank" rel="noopener noreferrer" className="w-12 h-12 bg-white/10 backdrop-blur-sm rounded-full flex items-center justify-center text-white hover:bg-white hover:text-cyan-900 transition-all duration-300 hover:scale-110 border border-white/20">
                 <Instagram className="w-5 h-5" />
               </a>
             </div>
@@ -122,23 +122,26 @@ const Hero = () => {
                   {/* Profile Picture */}
                   <div className="mb-8 flex justify-center relative z-10">
                     <div className="relative">
-                      <div className="w-40 h-40 rounded-full bg-gradient-to-br from-white/20 to-cyan-200/30 p-1 shadow-xl">
+                      <div className="w-52 h-52 rounded-full bg-gradient-to-br from-white/20 to-cyan-200/30 p-1 shadow-xl">
                         <div className="w-full h-full rounded-full bg-white flex items-center justify-center overflow-hidden">
                           <img 
-                            src="https://via.placeholder.com/160x160/06b6d4/ffffff?text=DR" 
+                            src="/images/profile.jpg" 
                             alt="Devi Rosa Aprilla" 
                             className="w-full h-full object-cover rounded-full"
+                            onError={(e) => {
+                              e.target.src = "https://via.placeholder.com/200x200/06b6d4/ffffff?text=DR";
+                            }}
                           />
                         </div>
                       </div>
                       {/* Floating decorative elements around profile */}
-                      <div className="absolute -top-3 -right-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-cyan-600 text-sm font-bold animate-pulse shadow-lg">
+                      <div className="absolute -top-4 -right-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center text-cyan-600 text-base font-bold animate-pulse shadow-lg">
                         📐
                       </div>
-                      <div className="absolute -bottom-3 -left-3 w-10 h-10 bg-white/90 rounded-full flex items-center justify-center text-teal-600 text-sm font-bold animate-bounce shadow-lg">
+                      <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center text-teal-600 text-base font-bold animate-bounce shadow-lg">
                         ✨
                       </div>
-                      <div className="absolute top-1/2 -right-6 w-8 h-8 bg-white/80 rounded-full flex items-center justify-center text-blue-600 text-xs font-bold animate-pulse">
+                      <div className="absolute top-1/2 -right-8 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold animate-pulse">
                         π
                       </div>
                     </div>
@@ -146,10 +149,13 @@ const Hero = () => {
 
                   {/* Profile Info */}
                   <div className="text-center text-white relative z-10">
-                    <p className="text-sm opacity-90 mb-2">You can call me</p>
-                    <p className="text-2xl font-bold text-white mb-3">Devi ✨</p>
-                    <p className="text-sm opacity-80">Second-year Mathematics</p>
-                    <p className="text-sm opacity-80">ITS Surabaya</p>
+                    <h3 className="text-2xl font-bold text-white mb-2">Devi Rosa Aprilla</h3>
+                    <p className="text-base text-cyan-100 mb-1 font-medium">Mathematics Student</p>
+                    <p className="text-sm text-white/80 mb-3">Institut Teknologi Sepuluh Nopember</p>
+                    <div className="flex items-center justify-center gap-2 text-xs text-white/70">
+                      <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                      <span>Available for projects</span>
+                    </div>
                   </div>
                   
                   {/* Decorative math symbols floating around */}

@@ -46,7 +46,7 @@ const Navbar = () => {
                 : 'text-white'
             }`}
           >
-            Devi ✨
+            Devi's Portfolio
           </button>
 
           {/* Desktop Navigation - Centered */}

@@ -172,8 +172,8 @@ const Contact = () => {
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-cyan-200/20 shadow-2xl">
               <h3 className="text-xl font-medium text-white mb-6">Direct Contact</h3>
               <div className="space-y-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-cyan-400/20 rounded-full flex items-center justify-center">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-cyan-400/20 rounded-full flex items-center justify-center mt-1">
                     <MapPin className="w-5 h-5 text-cyan-300" />
                   </div>
                   <div>
@@ -182,22 +182,22 @@ const Contact = () => {
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-teal-400/20 rounded-full flex items-center justify-center">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-teal-400/20 rounded-full flex items-center justify-center mt-1">
                     <Mail className="w-5 h-5 text-teal-300" />
                   </div>
                   <div>
-                    <p className="text-white font-medium">devi.rosa@example.com</p>
+                    <p className="text-white font-medium">depichan18@gmail.com</p>
                     <p className="text-gray-300 text-sm">Email me anytime</p>
                   </div>
                 </div>
                 
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 bg-blue-400/20 rounded-full flex items-center justify-center">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-blue-400/20 rounded-full flex items-center justify-center mt-1">
                     <Phone className="w-5 h-5 text-blue-300" />
                   </div>
                   <div>
-                    <p className="text-white font-medium">+62 xxx-xxx-xxxx</p>
+                    <p className="text-white font-medium">+62 851-5630-2120</p>
                     <p className="text-gray-300 text-sm">Available 9AM - 6PM</p>
                   </div>
                 </div>
@@ -209,7 +209,7 @@ const Contact = () => {
               <h3 className="text-xl font-medium text-white mb-6">Social Links</h3>
               <div className="grid grid-cols-2 gap-4">
                 <a
-                  href="https://github.com/devipichan"
+                  href="https://github.com/depichan18"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center gap-3 p-4 rounded-xl border border-gray-400/20 hover:border-gray-300/40 hover:bg-white/20 transition-all duration-300 group"
@@ -221,7 +221,7 @@ const Contact = () => {
                 </a>
                 
                 <a
-                  href="https://linkedin.com/in/devi-rosa-aprilla"
+                  href="https://linkedin.com/in/devirosa"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center gap-3 p-4 rounded-xl border border-cyan-200/20 hover:border-cyan-300/40 hover:bg-cyan-500/20 transition-all duration-300 group"
@@ -233,7 +233,7 @@ const Contact = () => {
                 </a>
                 
                 <a
-                  href="mailto:devi.rosa@example.com"
+                  href="mailto:depichan18@gmail.com"
                   className="flex flex-col items-center gap-3 p-4 rounded-xl border border-teal-200/20 hover:border-teal-300/40 hover:bg-teal-500/20 transition-all duration-300 group"
                 >
                   <div className="w-12 h-12 bg-teal-400/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
@@ -243,7 +243,7 @@ const Contact = () => {
                 </a>
                 
                 <a
-                  href="https://instagram.com/devipichan"
+                  href="https://instagram.com/devirosaa24"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex flex-col items-center gap-3 p-4 rounded-xl border border-pink-200/20 hover:border-pink-300/40 hover:bg-pink-500/20 transition-all duration-300 group"
