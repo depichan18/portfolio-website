@@ -23,7 +23,7 @@ const About = () => {
             </h2>
           </div>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto font-light">
-            Exploring the intersection of mathematics and technology
+            Passionate about mathematics, logic, and the intersection with financial technology
           </p>
         </div>
 
@@ -35,25 +35,38 @@ const About = () => {
                 My Journey
               </h3>
               <p className="text-gray-700 leading-relaxed mb-4 font-light">
-                Second-year Mathematics student at Institut Teknologi Sepuluh Nopember (ITS) Surabaya, 
-                passionate about bridging mathematical theory with practical programming solutions.
+                Second-year <span className="text-blue-600 font-semibold">Mathematics</span> student at <span className="text-teal-600 font-semibold">Institut Teknologi Sepuluh Nopember (ITS)</span> who deeply loves <span className="text-green-600 font-semibold">mathematics, logic, and problem solving</span>. Currently active in <span className="text-blue-700 font-semibold">OMITS 18</span> (ITS National Mathematics Olympiad) as a <span className="text-green-600 font-semibold">question maker</span> for primary school level.
+              </p>
+              <p className="text-gray-700 leading-relaxed mb-4 font-light">
+                Active in campus organizations including <span className="text-teal-600 font-semibold">UKM IFLS</span> (ITS Foreign Language Society) in the <span className="text-blue-600 font-semibold">SRD</span> (Student Resource Development) division, 
+                and <span className="text-green-700 font-semibold">MPA ITS</span> as <span className="text-blue-700 font-semibold">Secretary and Treasurer</span> of the External Division.
               </p>
               <p className="text-gray-700 leading-relaxed font-light">
-                I believe mathematics provides the perfect foundation for computational thinking, 
-                enabling elegant and efficient problem-solving approaches.
+                Passionate about <span className="text-green-600 font-semibold">financial mathematical modeling</span> with <span className="text-blue-600 font-semibold">AI technology</span> (machine learning & deep learning). 
+                Interested in pursuing careers as a <span className="text-teal-700 font-semibold">quant, quantitative researcher, trading analyst, or data analyst</span>.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-4">
-              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-cyan-100/30 hover:border-cyan-200/50 transition-all duration-300 group">
-                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">📐</div>
-                <h4 className="font-semibold text-gray-800 text-sm">Mathematics</h4>
-                <p className="text-xs text-gray-600 font-light">ITS Surabaya</p>
+              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-cyan-100/30 hover:border-cyan-200/50 transition-all duration-300 group shadow-lg">
+                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">🏆</div>
+                <h4 className="font-semibold text-gray-800 text-sm">OMITS 18</h4>
+                <p className="text-xs text-gray-600 font-light">Question Maker</p>
               </div>
-              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-teal-100/30 hover:border-teal-200/50 transition-all duration-300 group">
-                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">⚡</div>
-                <h4 className="font-semibold text-gray-800 text-sm">Programming</h4>
-                <p className="text-xs text-gray-600 font-light">Self-taught</p>
+              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-teal-100/30 hover:border-teal-200/50 transition-all duration-300 group shadow-lg">
+                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">🌐</div>
+                <h4 className="font-semibold text-gray-800 text-sm">UKM IFLS</h4>
+                <p className="text-xs text-gray-600 font-light">SRD Division</p>
+              </div>
+              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-blue-100/30 hover:border-blue-200/50 transition-all duration-300 group shadow-lg">
+                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">💼</div>
+                <h4 className="font-semibold text-gray-800 text-sm">MPA ITS</h4>
+                <p className="text-xs text-gray-600 font-light">Secretary & Treasurer</p>
+              </div>
+              <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-green-100/30 hover:border-green-200/50 transition-all duration-300 group shadow-lg">
+                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">📈</div>
+                <h4 className="font-semibold text-gray-800 text-sm">Financial AI</h4>
+                <p className="text-xs text-gray-600 font-light">Research Interest</p>
               </div>
             </div>
           </div>
