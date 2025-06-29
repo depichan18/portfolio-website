@@ -155,3 +155,47 @@ body {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
+.glass-effect-dark {
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Gradient animations for About section */
+@keyframes gradient-x {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes gradient-shift {
+  0% {
+    transform: translateX(-10%) translateY(-10%);
+    opacity: 0.8;
+  }
+  33% {
+    transform: translateX(10%) translateY(-5%);
+    opacity: 0.9;
+  }
+  66% {
+    transform: translateX(-5%) translateY(10%);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(-10%) translateY(-10%);
+    opacity: 0.8;
+  }
+}
+
+.animate-gradient-x {
+  background-size: 200% 200%;
+  animation: gradient-x 15s ease infinite;
+}
+
+.animate-gradient-shift {
+  animation: gradient-shift 20s ease-in-out infinite;
+}

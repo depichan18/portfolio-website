@@ -149,7 +149,64 @@ const Projects = () => {
     : projects.filter(project => project.category === activeCategory);
 
   return (
-    <section id="projects" className="py-20 pt-32 px-6 bg-gradient-to-br from-cyan-50 via-sky-100/40 to-blue-50/50 relative overflow-hidden">
+    <section id="projects" className="py-20 pt-32 px-6 relative overflow-hidden">
+      {/* Animated Background Gradient - Clear Blue and Cyan */}
+      <div className="absolute inset-0">
+        <div className="absolute inset-0 bg-gradient-to-br from-sky-100 via-blue-100 to-cyan-100"></div>
+        <div 
+          className="absolute inset-0 opacity-35"
+          style={{
+            background: `
+              radial-gradient(circle at 25% 75%, rgba(56, 189, 248, 0.25) 0%, transparent 60%),
+              radial-gradient(circle at 75% 25%, rgba(6, 182, 212, 0.20) 0%, transparent 60%),
+              radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.15) 0%, transparent 70%)
+            `,
+            animation: 'clearBlueGradientMove 16s ease-in-out infinite'
+          }}
+        ></div>
+        <div 
+          className="absolute inset-0 opacity-25"
+          style={{
+            background: `
+              linear-gradient(45deg, rgba(56, 189, 248, 0.12) 0%, transparent 30%, rgba(6, 182, 212, 0.10) 50%, transparent 70%, rgba(14, 165, 233, 0.08) 100%)
+            `,
+            animation: 'clearBlueGradientShift 22s linear infinite'
+          }}
+        ></div>
+      </div>
+
+      {/* Mathematical Background with Clear Animation */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-24 left-12 text-8xl text-sky-400/20 font-light animate-pulse">∂</div>
+        <div className="absolute bottom-24 right-12 text-8xl text-cyan-400/20 font-light animate-bounce" style={{ animationDuration: '5s' }}>∫</div>
+        <div className="absolute top-1/3 right-1/4 text-6xl text-blue-400/15 font-light animate-spin" style={{ animationDuration: '30s' }}>∞</div>
+        <div className="absolute bottom-1/3 left-1/4 text-5xl text-sky-500/20 font-light animate-pulse" style={{ animationDelay: '3s' }}>π</div>
+        <div className="absolute top-1/2 left-16 text-4xl text-cyan-500/25 font-light animate-bounce" style={{ animationDuration: '7s', animationDelay: '2s' }}>√</div>
+        <div className="absolute bottom-1/2 right-16 text-7xl text-blue-500/18 font-light animate-pulse" style={{ animationDelay: '4s' }}>Σ</div>
+      </div>
+
+      <style jsx>{`
+        @keyframes clearBlueGradientMove {
+          0%, 100% {
+            transform: scale(1) rotate(0deg);
+          }
+          50% {
+            transform: scale(1.08) rotate(90deg);
+          }
+        }
+        
+        @keyframes clearBlueGradientShift {
+          0% {
+            transform: translateX(-30%) rotate(0deg);
+          }
+          50% {
+            transform: translateX(30%) rotate(120deg);
+          }
+          100% {
+            transform: translateX(-30%) rotate(240deg);
+          }
+        }
+      `}</style>
       {/* Mathematical Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-32 left-16 text-8xl text-blue-100/20 font-light transform rotate-12">∇</div>

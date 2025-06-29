@@ -2,16 +2,19 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-blue-50 via-blue-100/40 to-indigo-50/50 relative overflow-hidden">
+    <section id="about" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-blue-200 via-blue-400 to-blue-800 relative overflow-hidden animate-gradient-x">
+      {/* Animated Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-blue-100 to-blue-600 opacity-80 animate-gradient-shift"></div>
+      
       {/* Mathematical Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 text-6xl text-cyan-100/40 font-light">∑</div>
-        <div className="absolute top-40 right-20 text-5xl text-teal-100/30 font-light">∫</div>
-        <div className="absolute bottom-40 left-20 text-4xl text-blue-100/50 font-light">π</div>
-        <div className="absolute bottom-20 right-32 text-7xl text-green-100/20 font-light">∞</div>
-        <div className="absolute top-60 left-1/2 text-3xl text-cyan-100/30 font-light">θ</div>
-        <div className="absolute top-32 left-1/3 text-2xl text-teal-100/40 font-light">∂</div>
-        <div className="absolute bottom-60 right-1/3 text-5xl text-blue-100/30 font-light">√</div>
+        <div className="absolute top-20 left-10 text-6xl text-blue-200/50 font-light animate-pulse">∑</div>
+        <div className="absolute top-40 right-20 text-5xl text-cyan-200/40 font-light animate-bounce" style={{animationDelay: '1s', animationDuration: '3s'}}>∫</div>
+        <div className="absolute bottom-40 left-20 text-4xl text-blue-300/60 font-light animate-pulse" style={{animationDelay: '2s'}}>π</div>
+        <div className="absolute bottom-20 right-32 text-7xl text-white/30 font-light animate-spin" style={{animationDelay: '0.5s', animationDuration: '8s'}}>∞</div>
+        <div className="absolute top-60 left-1/2 text-3xl text-cyan-300/40 font-light animate-bounce" style={{animationDelay: '1.5s', animationDuration: '4s'}}>θ</div>
+        <div className="absolute top-32 left-1/3 text-2xl text-blue-200/50 font-light animate-pulse" style={{animationDelay: '3s'}}>∂</div>
+        <div className="absolute bottom-60 right-1/3 text-5xl text-white/40 font-light animate-bounce" style={{animationDelay: '2.5s', animationDuration: '3.5s'}}>√</div>
       </div>
 
       <div className="container mx-auto px-6 relative z-10">

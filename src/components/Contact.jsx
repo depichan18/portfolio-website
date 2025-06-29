@@ -195,46 +195,46 @@ const Contact = () => {
                   href="https://github.com/devipichan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/20 hover:border-white/40 hover:bg-white/10 transition-all duration-300 group"
+                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-cyan-200/40 hover:border-cyan-300/60 hover:bg-white/30 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 bg-gray-400/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Github className="w-6 h-6 text-gray-300" />
+                  <div className="w-12 h-12 bg-gray-100/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Github className="w-6 h-6 text-gray-600" />
                   </div>
-                  <span className="text-sm font-medium text-white">GitHub</span>
+                  <span className="text-sm font-medium text-teal-700">GitHub</span>
                 </a>
                 
                 <a
                   href="https://linkedin.com/in/devi-rosa-aprilla"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/20 hover:border-blue-400/40 hover:bg-blue-400/10 transition-all duration-300 group"
+                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-cyan-200/40 hover:border-blue-300/60 hover:bg-blue-50/30 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 bg-blue-400/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Linkedin className="w-6 h-6 text-blue-300" />
+                  <div className="w-12 h-12 bg-blue-100/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Linkedin className="w-6 h-6 text-blue-600" />
                   </div>
-                  <span className="text-sm font-medium text-white">LinkedIn</span>
+                  <span className="text-sm font-medium text-teal-700">LinkedIn</span>
                 </a>
                 
                 <a
                   href="mailto:devi.rosa@example.com"
-                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/20 hover:border-teal-400/40 hover:bg-teal-400/10 transition-all duration-300 group"
+                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-cyan-200/40 hover:border-teal-300/60 hover:bg-teal-50/30 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 bg-teal-400/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Mail className="w-6 h-6 text-teal-300" />
+                  <div className="w-12 h-12 bg-teal-100/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Mail className="w-6 h-6 text-teal-600" />
                   </div>
-                  <span className="text-sm font-medium text-white">Email</span>
+                  <span className="text-sm font-medium text-teal-700">Email</span>
                 </a>
                 
                 <a
                   href="https://instagram.com/devipichan"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-white/20 hover:border-pink-400/40 hover:bg-pink-400/10 transition-all duration-300 group"
+                  className="flex flex-col items-center gap-3 p-4 rounded-xl border border-cyan-200/40 hover:border-pink-300/60 hover:bg-pink-50/30 transition-all duration-300 group"
                 >
-                  <div className="w-12 h-12 bg-pink-400/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                    <Instagram className="w-6 h-6 text-pink-300" />
+                  <div className="w-12 h-12 bg-pink-100/80 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                    <Instagram className="w-6 h-6 text-pink-600" />
                   </div>
-                  <span className="text-sm font-medium text-white">Instagram</span>
+                  <span className="text-sm font-medium text-teal-700">Instagram</span>
                 </a>
               </div>
             </div>
@@ -242,20 +242,20 @@ const Contact = () => {
         </div>
 
         {/* Mathematical Quote */}
-        <div className="text-center py-8 border-t border-white/20">
-          <div className="inline-flex items-center gap-4 text-white">
-            <span className="text-2xl text-teal-300">∂</span>
+        <div className="text-center py-8 border-t border-cyan-200/40">
+          <div className="inline-flex items-center gap-4 text-teal-700">
+            <span className="text-2xl text-teal-500">∂</span>
             <p className="font-light italic">
               "Mathematics is the language in which God has written the universe"
             </p>
-            <span className="text-2xl text-cyan-300">∫</span>
+            <span className="text-2xl text-cyan-500">∫</span>
           </div>
-          <p className="text-sm text-teal-200 mt-2">- Galileo Galilei</p>
+          <p className="text-sm text-teal-600 mt-2">- Galileo Galilei</p>
         </div>
 
         {/* Footer */}
         <div className="text-center pt-8">
-          <p className="text-teal-200 font-light">
+          <p className="text-teal-600 font-light">
             © 2025 Devi Rosa Aprilla • Made with 💝 and ∞ curiosity
           </p>
         </div>
