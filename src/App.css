@@ -1,0 +1,16 @@
+.App {
+  text-align: center;
+  width: 100%;
+}
+
+/* Ensure smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Fix any layout issues */
+* {
+  box-sizing: border-box;
+}
+
+/* Additional app-specific styles can be added here */
