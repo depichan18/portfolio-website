@@ -366,17 +366,21 @@ const About = () => {
                 <div className="flex gap-2">
                   <button
                     onClick={prevCert}
-                    className="w-8 h-8 bg-purple-100 hover:bg-purple-200 rounded-full flex items-center justify-center text-purple-600 transition-all duration-200 hover:scale-110 disabled:opacity-50"
+                    className="w-10 h-10 bg-purple-100 hover:bg-purple-200 rounded-full flex items-center justify-center text-purple-600 transition-all duration-200 hover:scale-110 disabled:opacity-50"
                     disabled={certifications.length <= 3}
                   >
-                    ←
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </button>
                   <button
                     onClick={nextCert}
-                    className="w-8 h-8 bg-purple-100 hover:bg-purple-200 rounded-full flex items-center justify-center text-purple-600 transition-all duration-200 hover:scale-110 disabled:opacity-50"
+                    className="w-10 h-10 bg-purple-100 hover:bg-purple-200 rounded-full flex items-center justify-center text-purple-600 transition-all duration-200 hover:scale-110 disabled:opacity-50"
                     disabled={certifications.length <= 3}
                   >
-                    →
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    </svg>
                   </button>
                 </div>
               </div>
