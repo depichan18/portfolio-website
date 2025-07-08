@@ -1,8 +1,47 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { ChevronDown, Github, Linkedin, Mail, Instagram } from "lucide-react";
 
 const Hero = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  
+  // Hook untuk animasi scroll
+  const [visibleElements, setVisibleElements] = useState(new Set());
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements(prev => new Set([...prev, entry.target.dataset.animateId]));
+          } else {
+            // Hapus dari set agar bisa mengulang animasi
+            setVisibleElements(prev => {
+              const newSet = new Set(prev);
+              newSet.delete(entry.target.dataset.animateId);
+              return newSet;
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    observerRef.current = observer;
+
+    // Observe all elements with data-animate-id
+    const elementsToObserve = document.querySelectorAll('[data-animate-id]');
+    elementsToObserve.forEach(el => observer.observe(el));
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
   
   // Get base URL for images (works for both dev and production)
   const getImagePath = (imageName) => {
@@ -28,7 +67,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-between relative overflow-hidden bg-gradient-to-br from-cyan-900 via-teal-800 to-blue-900 pt-20 section-content">
+    <div id="hero" className="min-h-screen flex items-center justify-between relative overflow-hidden bg-gradient-to-br from-cyan-900 via-teal-800 to-blue-900 pt-20 section-content">
       {/* Animated background shapes */}
       <div className="absolute inset-0 overflow-hidden">
         <div 
@@ -55,9 +94,16 @@ const Hero = () => {
 
       <div className="container mx-auto px-6 lg:px-12 grid lg:grid-cols-2 items-center gap-12 relative z-10 max-w-7xl">
         {/* Left Content */}
-        <div className="text-left space-y-6 max-w-xl">
+        <div 
+          className={`text-left space-y-6 max-w-xl transition-all duration-1000 ${
+            visibleElements.has('hero-content') 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 -translate-x-10'
+          }`}
+          data-animate-id="hero-content"
+        >
           <div className="animate-fade-in">
-            <p className="text-cyan-300 text-base font-medium mb-4 tracking-wide">WELCOME TO MY WORLD ✨</p>
+            
             
             <div className="space-y-3">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight animate-scale-in">
@@ -108,7 +154,14 @@ const Hero = () => {
         </div>
 
         {/* Right Content - 3D Phone/Profile Container */}
-        <div className="relative flex justify-center items-center lg:justify-end">
+        <div 
+          className={`relative flex justify-center items-center lg:justify-end transition-all duration-1000 delay-300 ${
+            visibleElements.has('hero-profile') 
+              ? 'opacity-100 translate-x-0' 
+              : 'opacity-0 translate-x-10'
+          }`}
+          data-animate-id="hero-profile"
+        >
           <div className="relative">
             {/* Phone-like container with 3D effect */}
             <div className="relative">
@@ -142,14 +195,11 @@ const Hero = () => {
                         </div>
                       </div>
                       {/* Floating decorative elements around profile */}
-                      <div className="absolute -top-4 -right-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center text-cyan-600 text-base font-bold animate-pulse shadow-lg">
-                        📐
-                      </div>
-                      <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-white/90 rounded-full flex items-center justify-center text-teal-600 text-base font-bold animate-bounce shadow-lg">
+                      <div className="absolute -bottom-4 -left-4 text-white text-2xl font-bold animate-bounce">
                         ✨
                       </div>
-                      <div className="absolute top-1/2 -right-8 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-blue-600 text-sm font-bold animate-pulse">
-                        π
+                      <div className="absolute top-1/2 -right-8 text-white text-xl font-bold animate-pulse">
+                        ∞
                       </div>
                     </div>
                   </div>

@@ -5,6 +5,69 @@ const Projects = () => {
   const [currentSlide, setCurrentSlide] = useState({});
   const intervalRefs = useRef({});
   
+  // State for image popup
+  const [popupImage, setPopupImage] = useState(null);
+  
+  // State for scroll animations
+  const [animatedElements, setAnimatedElements] = useState(new Set());
+  const observerRef = useRef();
+
+  // Intersection Observer for scroll animations
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: '0px 0px -100px 0px',
+      threshold: 0.1
+    };
+
+    observerRef.current = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const element = entry.target;
+        if (entry.isIntersecting) {
+          // Add animation when element enters viewport
+          element.classList.add('animate-in');
+          setAnimatedElements(prev => new Set([...prev, element.id]));
+        } else {
+          // Remove animation when element leaves viewport (for repeat animations)
+          element.classList.remove('animate-in');
+          setAnimatedElements(prev => {
+            const newSet = new Set(prev);
+            newSet.delete(element.id);
+            return newSet;
+          });
+        }
+      });
+    }, options);
+
+    // Observe all elements with scroll-animate class
+    const elements = document.querySelectorAll('.scroll-animate');
+    elements.forEach((el) => observerRef.current.observe(el));
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
+  // Re-observe elements when component updates
+  useEffect(() => {
+    if (observerRef.current) {
+      const elements = document.querySelectorAll('.scroll-animate');
+      elements.forEach((el) => observerRef.current.observe(el));
+    }
+  });
+
+  // Close popup on overlay or ESC
+  useEffect(() => {
+    if (!popupImage) return;
+    const handleKey = (e) => {
+      if (e.key === 'Escape') setPopupImage(null);
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [popupImage]);
+  
   // State for testimonials
   const [testimonials, setTestimonials] = useState([
     {
@@ -59,105 +122,152 @@ const Projects = () => {
   const projects = [
     {
       id: 1,
-      title: "Hill Cipher Encryption",
-      description: "Simple Hill cipher encryption implementation using matrix operations (n×n) that can read and process .txt files. Built with mathematical concepts from Linear Algebra course.",
-      detailedDescription: "A comprehensive implementation of the Hill Cipher algorithm using matrix operations. This project demonstrates advanced mathematical concepts including modular arithmetic, matrix multiplication, and inverse matrix calculations. The application can handle files of various sizes and supports both encryption and decryption processes.",
-      category: "academic",
-      tags: ["Python", "Jupyter Notebook", "Linear Algebra", "Matrix Operations"],
+      title: "Depi Store Manager",
+      description: "A modern store management app that streamlines inventory, sales, and reporting for small retail businesses.",
+      detailedDescription: "Depi Store Manager is a desktop application designed to simplify daily operations in small retail stores. It offers features for managing product data, automating transactions, and generating insightful business reports. With a clean and user-friendly interface, store owners can efficiently track stock, monitor sales performance, and make data-driven decisions to grow their business.",
+      category: "personal",
+      tags: ["Java", "MySQL", "JavaFX", "Maven", "Apache POI", "OpenPDF"],
       gradientColor: "from-cyan-400 to-teal-400",
-      icon: "🔐",
-      link: "#",
-      github: "#",
+      icon: "📦",
+      link: "https://github.com/depichan18/depistore-manager",
+      github: "https://github.com/depichan18/depistore-manager",
       images: [
-        "/api/placeholder/600/400",
-        "/api/placeholder/600/400", 
+        "/images/depistore-1.png",
+        "/images/depistore-2.png", 
         "/api/placeholder/600/400"
       ],
       features: [
-        "Matrix-based encryption/decryption",
-        "File processing capabilities",
-        "Mathematical visualization",
-        "Interactive Jupyter interface"
+        "Product and stock management (CRUD)",
+        "Automated sales recording",
+        "Business dashboard with analytics",
+        "Printable daily, weekly, and monthly reports",
+        "Quick search and sort functions"
       ]
     },
     {
       id: 2,
       title: "Paw Jump Game",
-      description: "Creative and cute endless jumping game developed in Java Swing. Features smooth gameplay mechanics and adorable graphics. Created for Algorithm and Computer Programming 2 course.",
-      detailedDescription: "An engaging endless jumping game featuring cute animal characters. Built with Java Swing, it showcases object-oriented programming principles, collision detection algorithms, and smooth animation techniques. The game includes scoring systems, power-ups, and progressively challenging levels.",
+      description: "A 2D endless runner game where players dodge obstacles, collect fish, and level up to achieve high scores.",
+      detailedDescription: "Paw Jump is an endless runner game inspired by the classic Dino Chrome experience. Players control a character that runs automatically and must jump or duck to avoid increasingly difficult obstacles while collecting fish to survive and progress. Every 250 meters, the game speeds up and introduces new challenges. With a lives system, level-up conditions, and special buff items, Paw Jump combines reflex-based gameplay with strategic item collection for a fun and addictive experience.",
       category: "academic",
-      tags: ["Java", "Java Swing", "Game Development", "OOP"],
+      tags: ["Java", "Java Swing", "Game Development", "OOP", "2D Game"],
       gradientColor: "from-cyan-400 to-green-400",
       icon: "🐾",
-      link: "#",
-      github: "#",
+      link: "https://github.com/depichan18/paw-jump",
+      github: "https://github.com/depichan18/paw-jump",
       images: [
         "/api/placeholder/600/400",
         "/api/placeholder/600/400",
         "/api/placeholder/600/400"
       ],
       features: [
-        "Smooth character animations",
-        "Dynamic obstacle generation",
-        "Score tracking system",
-        "Power-up mechanics"
+        "Dynamic level progression and speed scaling",
+        "Fish collection system for leveling up",
+        "Lives and buffs for strategic survival",
+        "Simple jump/drop controls with intuitive UI"
       ]
     },
     {
       id: 3,
-      title: "FSA Diagram Generator",
-      description: "Finite State Automata diagram generator that creates DFA and NFA diagrams with transition tables. Input your information and get beautiful state transition diagrams automatically.",
-      detailedDescription: "An advanced tool for generating finite state automata diagrams with professional-quality output. Supports both DFA and NFA creation, automatic layout optimization, and export capabilities. Essential for computer science students studying formal languages and automata theory.",
-      category: "academic",
-      tags: ["Python", "Jupyter Notebook", "Discrete Mathematics", "Automata Theory"],
+      title: "Bookkeeping Application",
+      description: "A complete accounting application with double-entry bookkeeping, financial reports, and CSV data import — all in a clean, modern interface.",
+      detailedDescription: "This project is a fully functional double-entry accounting system built for small to medium businesses. It supports full Chart of Accounts management, transaction tracking with automatic validation, and generation of key financial reports like Trial Balance, Balance Sheet, and Income Statement — all exportable to PDF. With bulk CSV import for accounts and transactions, plus a modern, user-friendly UI, this application streamlines financial management while maintaining accounting standards.",
+      category: "personal",
+      tags: ["JavaFX", "Accounting", "SQLite", "JPA", "Hibernate", "Maven"],
       gradientColor: "from-green-400 to-green-400",
       icon: "🔄",
-      link: "#",
-      github: "#",
+      link: "https://github.com/your-username/bookkeeping-app",
+      github: "https://github.com/your-username/bookkeeping-app",
       images: [
-        "/api/placeholder/600/400",
-        "/api/placeholder/600/400",
-        "/api/placeholder/600/400"
+        "/images/bookkeeping-1.png",
+        "/images/bookkeeping-2.png",
+        "/images/bookkeeping-3.png"
       ],
       features: [
-        "DFA and NFA support",
-        "Automatic diagram layout",
-        "Transition table generation",
-        "Export to multiple formats"
+        "Full double-entry bookkeeping",
+        "Chart of Accounts & transaction tracking",
+        "Financial reports (PDF export)",
+        "CSV data import for bulk entries"
       ]
     },
     {
       id: 4,
-      title: "GUI Cashier System",
-      description: "Interactive cashier application with graphical user interface built using JOptionPane. Features transaction processing and user-friendly design for basic point-of-sale operations.",
-      detailedDescription: "A complete point-of-sale system with intuitive GUI design. Features include inventory management, transaction processing, receipt generation, and sales reporting. Built with Java Swing and demonstrates database integration and user interface design principles.",
-      category: "academic",
-      tags: ["Java", "GUI", "JOptionPane"],
+      title: "Portfolio Website",
+      description: "A fast, responsive personal website to showcase projects, skills, and contact details with a clean, modern look.",
+      detailedDescription: "This personal portfolio website is designed to highlight your work and skills in a professional yet creative way. Built for performance and responsiveness, it includes smooth animations, interactive visuals, and a unique mathematical theme that reflects analytical thinking. The interface adapts to all screen sizes and provides an engaging experience through subtle mouse interactions and floating elements.",
+      category: "personal",
+      tags: ["React", "JavaScript", "Vite.js", "Tailwind CSS", "Web Design"],
       gradientColor: "from-green-400 to-green-400",
       icon: "💰",
-      link: "#",
-      github: "#",
+      link: "https://github.com/your-username/portfolio-website",
+      github: "https://github.com/your-username/portfolio-website",
       images: [
         "/api/placeholder/600/400",
         "/api/placeholder/600/400",
         "/api/placeholder/600/400"
       ],
       features: [
-        "Transaction processing",
-        "Inventory management",
-        "Receipt generation",
-        "Sales reporting"
+        "Interactive hero section",
+        "Math-themed floating visuals",
+        "Fully responsive layout",
+        "Smooth animations with clean UI"
       ]
     },
     {
       id: 5,
-      title: "OMITS Math Problems",
-      description: "Mathematical olympiad questions designed for primary school level as part of OMITS 18 committee work. Creative and educational problems to challenge young mathematical minds.",
-      detailedDescription: "A curated collection of mathematical olympiad problems specifically designed for elementary students. Each problem is crafted to develop logical thinking, problem-solving skills, and mathematical intuition. Includes detailed solutions and teaching notes for educators.",
+      title: "OMITS 18 Math Problems",
+      description: "A curated set of elementary-level math problems designed for the 18th National Mathematics Olympiad at ITS (OMITS 18).",
+      detailedDescription: "OMITS Math Problems is a personal collection of competition-style math questions created for the 18th edition of the National Mathematics Olympiad (OMITS) organized by ITS. Targeted at primary school participants, the set includes both easy and mid-to-high difficulty problems that challenge logical thinking, number sense, and creative problem solving. This project was developed as part of my committee responsibilities to support the academic quality of the event.",
       category: "committee",
-      tags: ["LaTeX", "Mathematics", "Education", "Problem Design"],
+      tags: ["LaTeX","Math Olympiad", "Mathematics", "Education", "Problem Design"],
       gradientColor: "from-purple-400 to-cyan-400",
       icon: "🧮",
+      link: "https://github.com/your-username/omits-math-problems",
+      github: "https://github.com/your-username/omits-math-problems",
+      images: [
+        "/api/placeholder/600/400",
+        "/api/placeholder/600/400",
+        "/api/placeholder/600/400"
+      ],
+      features: [
+        "Custom-made math problems for elementary level",
+        "Covers easy to advanced competition difficulty",
+        "Designed for OMITS 18 national event",
+        "Supports critical and creative thinking"
+      ]
+    },
+    {
+      id: 6,
+      title: "Quant Roadmap",
+      description: "An interactive web app documenting a personal 8-week journey to become a quantitative researcher — complete with tasks, tracking, and study tools in a playful, pastel-themed interface.",
+      detailedDescription: "Quant Journey is a personalized learning platform designed to support my transition into quantitative research. It combines structured curriculum planning, progress tracking, and built-in study tools across topics like statistics, finance, and programming. With a vibrant pink-blue theme and engaging UI, the app offers daily task management, real-time analytics, and exportable reports. This tool reflects my self-guided exploration of quantitative finance and serves both as a study companion and a public portfolio of my learning path.",
+      category: "personal",
+      tags: ["Cute", "Quant", "React", "Interactive", "Productivity", "Tailwind CSS"],
+      gradientColor: "from-purple-400 to-cyan-400",
+      icon: "📘",
+      link: "https://github.com/your-username/quant-roadmap",
+      github: "https://github.com/your-username/quant-roadmap",
+      images: [
+        "/images/quant-1.png",
+        "/images/quant-2.png",
+        "/images/quant-3.png"
+      ],
+      features: [
+        "Visual progress tracker & daily checklist",
+        "Built-in Pomodoro study timer",
+        "Exportable learning reports (JSON, CSV, HTML)",
+        "Fully responsive, local data storage"
+      ]
+    },
+    {
+      id: 7,
+      title: "Hill Cipher nxn Website",
+      description: "A responsive web app for encrypting and decrypting text using customizable Hill Cipher matrices with real-time feedback and file support.",
+      detailedDescription: "This project is a browser-based Hill Cipher tool designed for secure text encryption and decryption using modular arithmetic with mod 97 and invertible n×n matrices (2×2 to 7×7). Users can input text manually or via .txt file, and instantly see the processed result along with matrix visualizations. With a sleek glassmorphism UI and full support for printable ASCII characters, the app combines security, usability, and interactivity. It also includes smart padding, automatic matrix validation, and cross-platform functionality.",
+      category: "academic",
+      tags: ["LaTeX", "Mathematics", "Education", "Problem Design"],
+      gradientColor: "from-purple-400 to-cyan-400",
+      icon: "🔐",
       link: "#",
       github: "#",
       images: [
@@ -166,19 +276,19 @@ const Projects = () => {
         "/api/placeholder/600/400"
       ],
       features: [
-        "Age-appropriate difficulty",
-        "Step-by-step solutions",
-        "Educational value focus",
-        "Professional LaTeX formatting"
+        "Supports 2×2 to 7×7 key matrices (mod 97)",
+        "Live encryption/decryption with matrix display",
+        "Input via text or uploaded file",
+        "tylish responsive UI with real-time feedback"
       ]
     },
     {
-      id: 6,
+      id: 8,
       title: "LaTeX Academic Documents",
-      description: "Collection of beautifully formatted evaluation questions and solutions for various mathematics subjects. Written in LaTeX for professional academic documentation.",
-      detailedDescription: "Professional academic documentation system using LaTeX for creating examination papers, solution manuals, and educational materials. Features automated formatting, mathematical notation support, and consistent styling across all documents.",
+      description: "A curated collection of academic evaluations written in LaTeX, covering quizzes, exams, and presentations from various university courses.",
+      detailedDescription: "LaTeX Academic Documents is a personal archive of course evaluations written in LaTeX, organized by semester and subject. It includes Quiz 1, Mid-Term Exams, Quiz 2, Final Exams, and occasionally presentation materials. These resources are shared publicly through GitHub repositories to support juniors and peers in their academic journey. Each document is neatly formatted and aims to provide clear solutions and insights for exam preparation and review.",
       category: "personal",
-      tags: ["LaTeX", "Academic Writing", "Mathematics"],
+      tags: ["LaTeX", "Academic Writing", "Mathematics", "Education"],
       gradientColor: "from-cyan-400 to-cyan-400",
       icon: "📄",
       link: "#",
@@ -189,19 +299,19 @@ const Projects = () => {
         "/api/placeholder/600/400"
       ],
       features: [
-        "Professional formatting",
-        "Mathematical notation",
-        "Automated styling",
-        "Multi-document support"
+        "Full set of evaluations per course and semester",
+        "Written and formatted in LaTeX",
+        "Includes quizzes, exams, and presentations",
+        "Publicly shared to help fellow students"
       ]
     },
     {
-      id: 7,
+      id: 9,
       title: "Kuromi To-Do List",
-      description: "Simple and cute to-do list application made with Electron.js featuring Kuromi theme and interactive design. Includes a calendar view to track your tasks and deadlines with an adorable user interface.",
-      detailedDescription: "A delightful productivity application built with Electron.js featuring the beloved Kuromi character theme. Combines functionality with aesthetic appeal, offering task management, calendar integration, deadline tracking, and motivational features to make productivity enjoyable.",
+      description: "A cute and interactive desktop To-Do List app with note-taking and calendar view, designed with a fun Kuromi theme.",
+      detailedDescription:"This To-Do List app offers a playful and functional way to organize daily tasks. Built with Electron and styled with Kuromi-themed icons, it supports task creation, editing, and deletion, along with note-taking for each task. Users can view tasks by date using the built-in calendar and reset their task list in one click. All data is stored locally to ensure offline access. With its smooth interactions and kawaii aesthetic, it turns task management into a delightful experience.",
       category: "personal",
-      tags: ["Electron.js", "JavaScript", "HTML/CSS", "Calendar"],
+      tags: ["Electron.js", "JavaScript", "HTML/CSS", "Calendar", "Cute"],
       gradientColor: "from-pink-400 to-purple-400",
       icon: "🖤",
       link: "#",
@@ -212,19 +322,42 @@ const Projects = () => {
         "/api/placeholder/600/400"
       ],
       features: [
-        "Cute Kuromi theme",
-        "Calendar integration",
-        "Deadline reminders",
-        "Cross-platform support"
+        "Add, edit, and delete tasks with notes",
+        "Calendar view for date-based task browsing",
+        "One-click reset and local storage support",
+        "Kuromi-themed UI with interactive elements"
       ]
-    }
+    },
+    {
+      id: 10,
+      title: "GUI Cashier Application",
+      description: "A simple cashier desktop app using dialog boxes for interactive shopping simulation with stock and balance logic.",
+      detailedDescription: "GUI Kasir is a beginner-friendly cashier application built with JOptionPane for a fully dialog-based interface. It simulates a basic shopping experience where users select items, input quantity, and make purchases based on available funds and stock. The system handles real-time balance updates, stock deductions, and validates each transaction, making it an educational example of conditional logic and GUI interaction in programming.",
+      category: "academic",
+      tags: ["Java", "Swing", "JOptionPane", "GUI", "Cashier Simulation"],
+      gradientColor: "from-purple-400 to-cyan-400",
+      icon: "🛒",
+      link: "#",
+      github: "#",
+      images: [
+        "/api/placeholder/600/400",
+        "/api/placeholder/600/400",
+        "/api/placeholder/600/400"
+      ],
+      features: [
+        "Interactive shopping via dialog boxes",
+        "Real-time stock and balance validation",
+        "Simple transaction flow with retry options",
+        "Full logic handled through JOptionPane UI"
+      ]
+    },
   ];
 
   // Filter categories for easy management
   const categories = {
     all: "All Projects",
-    academic: "Academic",
-    personal: "Personal", 
+    personal: "Personal",
+    academic: "Academic", 
     committee: "Committee"
   };
 
@@ -306,13 +439,10 @@ const Projects = () => {
     };
   }, []);
 
-  // Debug effect to monitor slide changes
-  useEffect(() => {
-    console.log('Current slides state:', currentSlide);
-  }, [currentSlide]);
+
 
   return (
-    <div className="py-20 pt-32 px-6 relative overflow-hidden section-content">
+    <div id="projects" className="py-20 pt-32 px-6 relative overflow-hidden section-content">
       {/* Animated Background Gradient - Clear Blue and Cyan */}
       <div className="absolute inset-0">
         <div className="absolute inset-0 bg-gradient-to-br from-sky-100 via-blue-100 to-cyan-100"></div>
@@ -378,6 +508,15 @@ const Projects = () => {
             width: 100%;
           }
         }
+        
+        @keyframes fadein {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        
+        .animate-fadein {
+          animation: fadein 0.3s ease-out;
+        }
       `}</style>
       {/* Mathematical Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -389,7 +528,7 @@ const Projects = () => {
 
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 scroll-animate" id="projects-header">
           <div className="inline-block">
             <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 bg-clip-text text-transparent mb-4">
               My Projects
@@ -402,7 +541,7 @@ const Projects = () => {
         </div>
 
         {/* Category Filter */}
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mb-12 scroll-animate scroll-animate-delay-1" id="category-filter">
           <div className="flex gap-2 p-2 bg-white/60 backdrop-blur-sm rounded-xl border border-gray-200/50">
             {Object.entries(categories).map(([key, label]) => (
               <button
@@ -421,38 +560,47 @@ const Projects = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 relative">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16 relative">
           {filteredProjects.map((project, index) => {
             const isHovered = hoveredProject === project.id;
             const currentImageIndex = currentSlide[project.id] || 0;
             
+            // Calculate delay for staggered animation
+            const delayClass = `scroll-animate-delay-${Math.min(6, (index % 6) + 1)}`;
+
+            // Define emoticons based on project ID
+            const emoticons = {
+              1: '📦',
+              2: '🐾',
+              3: '🔄',
+              4: '💰',
+              5: '🧮',
+              6: '📘',
+              7: '🔐',
+              8: '📄',
+              9: '🖤',
+              10: '🛒'
+            };
+
             return (
-              <div key={project.id} className="relative">
-                {/* Placeholder div to maintain grid space when card is hovered */}
-                <div className={`transition-all duration-500 ${isHovered ? 'h-[32rem]' : 'h-auto'}`}>
-                  <div 
-                    className={`group relative bg-white/70 backdrop-blur-sm rounded-2xl border border-gray-100/50 hover:border-cyan-200/50 transition-all duration-500 hover:shadow-xl hover:shadow-cyan-100/25 overflow-hidden ${
-                      isHovered 
-                        ? 'absolute top-0 left-0 right-0 transform scale-110 z-30 shadow-2xl shadow-cyan-200/50' 
-                        : 'relative'
-                    }`}
-                    style={{
-                      transformOrigin: 'center top',
-                      ...(isHovered && {
-                        width: 'calc(100% + 2rem)',
-                        marginLeft: '-1rem',
-                        marginTop: '-0.5rem'
-                      })
-                    }}
-                    onMouseEnter={() => handleMouseEnter(project.id)}
-                    onMouseLeave={() => handleMouseLeave(project.id)}
-                  >
-                    {/* Category Badge */}
-                    <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${project.gradientColor} z-10`}></div>
-                    
-                    {/* Image Slider - Only show when hovered */}
-                    {isHovered && (
-                      <div className="relative h-48 overflow-hidden">
+              <div key={project.id} className={`relative scroll-animate ${delayClass}`} id={`project-${project.id}`}>
+                <div 
+                  className={`group relative bg-white/70 backdrop-blur-sm rounded-2xl border border-gray-100/50 hover:border-cyan-200/50 transition-all duration-500 hover:shadow-xl hover:shadow-cyan-100/25 overflow-hidden ${
+                    isHovered 
+                      ? 'z-30 shadow-2xl shadow-cyan-200/50' 
+                      : 'relative'
+                  }`}
+                  onMouseEnter={() => handleMouseEnter(project.id)}
+                  onMouseLeave={() => handleMouseLeave(project.id)}
+                >
+                  {/* Category Badge */}
+                  <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${project.gradientColor} z-10`}></div>
+
+                  {/* Project Preview Image */}
+                  <div className="relative h-56 overflow-hidden">
+                    {isHovered ? (
+                      // Image Slider when hovered
+                      <>
                         <div 
                           className="flex transition-transform duration-500 ease-in-out h-full"
                           style={{ transform: `translateX(-${currentImageIndex * 100}%)` }}
@@ -462,14 +610,34 @@ const Projects = () => {
                               key={index}
                               className="w-full h-full flex-shrink-0 bg-gradient-to-br from-cyan-50 to-blue-50 flex items-center justify-center relative"
                             >
-                              <div className="text-6xl opacity-30 animate-pulse">{project.icon}</div>
-                              <div className="absolute inset-0 bg-black/20"></div>
-                              <div className="absolute bottom-2 left-2 text-white text-xs bg-black/50 px-2 py-1 rounded">
+                              <img 
+                                src={image}
+                                alt={`${project.title} - Image ${index + 1}`}
+                                className="max-w-full max-h-full object-contain cursor-zoom-in"
+                                style={{display: 'block', margin: '0 auto'}}
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  e.stopPropagation();
+                                  stopAutoSlide(project.id);
+                                  console.log('Slider image clicked:', image);
+                                  setPopupImage(image);
+                                }}
+                                onError={(e) => {
+                                  // Fallback to icon if image fails to load
+                                  e.target.style.display = 'none';
+                                  e.target.nextElementSibling.style.display = 'flex';
+                                }}
+                              />
+                              <div className="w-full h-full bg-gradient-to-br from-cyan-50 to-blue-50 items-center justify-center text-6xl opacity-30 animate-pulse" style={{display: 'none'}}>
+                                {project.icon}
+                              </div>
+                              <div className="absolute inset-0 bg-black/2"></div>
+                              <div className="absolute bottom-2 left-2 text-white text-xs bg-black/20 px-2 py-1 rounded">
                                 Image {index + 1}
                               </div>
                               
                               {/* Auto-slide indicator */}
-                              <div className="absolute top-2 right-2 text-white text-xs bg-black/50 px-2 py-1 rounded flex items-center gap-1">
+                              <div className="absolute top-2 right-2 text-white text-xs bg-black/20 px-2 py-1 rounded flex items-center gap-1">
                                 <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
                                 Auto
                               </div>
@@ -477,13 +645,12 @@ const Projects = () => {
                           ))}
                         </div>
                         
-                        {/* Navigation Arrows - Updated with manual control */}
+                        {/* Navigation Arrows */}
                         <button 
                           onClick={(e) => { 
                             e.stopPropagation(); 
                             stopAutoSlide(project.id);
                             prevSlide(project.id);
-                            // Restart auto-slide after manual navigation
                             setTimeout(() => startAutoSlide(project.id), 1000);
                           }}
                           className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
@@ -495,7 +662,6 @@ const Projects = () => {
                             e.stopPropagation(); 
                             stopAutoSlide(project.id);
                             nextSlide(project.id);
-                            // Restart auto-slide after manual navigation
                             setTimeout(() => startAutoSlide(project.id), 1000);
                           }}
                           className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/80 hover:bg-white text-gray-700 rounded-full p-2 shadow-lg transition-all duration-200 hover:scale-110"
@@ -503,7 +669,7 @@ const Projects = () => {
                           →
                         </button>
                         
-                        {/* Slide Indicators - Updated with manual control */}
+                        {/* Slide Indicators */}
                         <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex gap-2">
                           {project.images.map((_, index) => (
                             <button
@@ -512,7 +678,6 @@ const Projects = () => {
                                 e.stopPropagation(); 
                                 stopAutoSlide(project.id);
                                 goToSlide(project.id, index);
-                                // Restart auto-slide after manual navigation
                                 setTimeout(() => startAutoSlide(project.id), 1000);
                               }}
                               className={`w-2 h-2 rounded-full transition-all duration-200 ${
@@ -525,7 +690,7 @@ const Projects = () => {
                         </div>
                         
                         {/* Progress bar for auto-slide */}
-                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/20">
+                        <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/2">
                           <div 
                             key={`progress-${project.id}-${currentImageIndex}`}
                             className="h-full bg-gradient-to-r from-cyan-400 to-teal-400"
@@ -534,66 +699,96 @@ const Projects = () => {
                             }}
                           ></div>
                         </div>
+                      </>
+                    ) : (
+                      // Static preview image when not hovered
+                      <div className="w-full h-full bg-gradient-to-br from-cyan-50 to-blue-50 flex items-center justify-center relative overflow-hidden">
+                        {project.images && project.images.length > 0 ? (
+                          <img 
+                            src={project.images[0]}
+                            alt={`${project.title} preview`}
+                            className="max-w-full max-h-full object-contain cursor-zoom-in"
+                            style={{display: 'block', margin: '0 auto'}}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              console.log('Preview image clicked:', project.images[0]);
+                              setPopupImage(project.images[0]);
+                            }}
+                            onError={(e) => {
+                              // Fallback to icon if image fails to load
+                              e.target.style.display = 'none';
+                              e.target.nextElementSibling.style.display = 'flex';
+                            }}
+                          />
+                        ) : null}
+                        <div className="w-full h-full bg-gradient-to-br from-cyan-50 to-blue-50 absolute inset-0 items-center justify-center text-6xl opacity-40" style={{display: 'none'}}>
+                          {project.icon}
+                        </div>
+                        <div className="absolute inset-0 bg-black/2"></div>
+                        <div className="absolute bottom-2 left-2 text-white text-xs bg-black/20 px-2 py-1 rounded">
+                          Preview
+                        </div>
                       </div>
                     )}
+                  </div>
+                  
+                  <div className="p-4">
+                    {/* Emoticon and Category Tag */}
+                    <div className="flex justify-between items-center mb-3">
+                      <span className="text-xl">{emoticons[project.id] || '❓'}</span>
+                      <span className={`inline-block px-2 py-1 text-xs font-medium rounded-full text-white bg-gradient-to-r ${project.gradientColor}`}>
+                        {project.category}
+                      </span>
+                    </div>
                     
-                    <div className={`p-8 ${isHovered ? 'pt-4' : ''}`}>
-                      {/* Category Tag and Icon */}
-                      <div className="flex justify-between items-start mb-4">
-                        <span className={`inline-block px-3 py-1 text-xs font-medium rounded-full text-white bg-gradient-to-r ${project.gradientColor}`}>
-                          {project.category}
-                        </span>
-                        {!isHovered && (
-                          <div className="text-2xl opacity-60 group-hover:opacity-80 transition-opacity duration-300">
-                            {project.icon}
-                          </div>
-                        )}
-                      </div>
-
-                      {/* Project Title */}
-                      <h3 className="text-xl font-bold text-gray-800 mb-4 group-hover:text-cyan-700 transition-colors duration-300">
+                    {/* Project Title - Centered */}
+                    <div className="text-center mb-3">
+                      <h3 className="text-lg font-bold text-gray-800 group-hover:text-cyan-700 transition-colors duration-300">
                         {project.title}
                       </h3>
+                    </div>
 
-                      {/* Project Description - Switch between short and detailed when hovered */}
-                      <p className={`text-gray-600 text-sm leading-relaxed mb-6 font-light ${
-                        isHovered ? '' : 'line-clamp-4'
-                      }`}>
-                        {isHovered ? project.detailedDescription : project.description}
-                      </p>
+                    {/* Project Description */}
+                    <p className="text-gray-600 text-sm leading-relaxed mb-3 font-light">
+                      {isHovered ? project.detailedDescription : project.description}
+                    </p>
 
-                      {/* Features List - Only show when hovered */}
-                      {isHovered && (
-                        <div className="mb-6">
-                          <h4 className="text-sm font-semibold text-gray-800 mb-3">Key Features:</h4>
-                          <ul className="space-y-1">
-                            {project.features.map((feature, index) => (
-                              <li key={index} className="text-xs text-gray-600 flex items-center">
-                                <span className="w-1 h-1 bg-cyan-400 rounded-full mr-2"></span>
-                                {feature}
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-
-                      {/* Tech Tags */}
-                      <div className="flex flex-wrap gap-2 mb-6">
+                    {/* Tech Tags - Only show when NOT hovered */}
+                    {!isHovered && (
+                      <div className="flex flex-wrap gap-1 mb-3">
                         {project.tags.map((tag, index) => (
                           <span 
                             key={index} 
-                            className="px-3 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-lg border border-gray-200/50 group-hover:bg-cyan-50 group-hover:text-cyan-800 group-hover:border-cyan-200/50 transition-all duration-300"
+                            className="px-2 py-1 text-xs font-medium bg-gray-100 text-gray-700 rounded-lg border border-gray-200/50 group-hover:bg-cyan-50 group-hover:text-cyan-800 group-hover:border-cyan-200/50 transition-all duration-300"
                           >
                             {tag}
                           </span>
                         ))}
                       </div>
+                    )}
 
-                      {/* Action Buttons */}
-                      <div className="flex gap-3">
+                    {/* Features List - Only show when hovered */}
+                    {isHovered && (
+                      <div className="mb-4">
+                        <h4 className="text-sm font-semibold text-gray-800 mb-2">Key Features:</h4>
+                        <ul className="space-y-1">
+                          {project.features.slice(0, 3).map((feature, index) => (
+                            <li key={index} className="text-sm text-gray-600 flex items-center">
+                              <span className="w-1 h-1 bg-cyan-400 rounded-full mr-2"></span>
+                              {feature}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {/* Action Buttons - Only show when hovered */}
+                    {isHovered && (
+                      <div className="flex gap-2 mt-3">
                         <a 
                           href={project.link}
-                          className="flex items-center justify-center gap-2 flex-1 px-4 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-sm font-medium rounded-xl hover:from-cyan-600 hover:to-teal-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-200/50"
+                          className="flex items-center justify-center gap-1 flex-1 px-3 py-2 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-sm font-medium rounded-lg hover:from-cyan-600 hover:to-teal-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-200/50"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <span>🚀</span>
@@ -602,14 +797,14 @@ const Projects = () => {
                         {project.github && (
                           <a 
                             href={project.github}
-                            className="flex items-center justify-center px-4 py-3 border border-gray-300 text-gray-700 text-sm font-medium rounded-xl hover:border-cyan-300 hover:text-cyan-700 hover:bg-cyan-50 transition-all duration-300 hover:scale-105"
+                            className="flex items-center justify-center px-3 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:border-cyan-300 hover:text-cyan-700 hover:bg-cyan-50 transition-all duration-300 hover:scale-105"
                             onClick={(e) => e.stopPropagation()}
                           >
                             📁
                           </a>
                         )}
                       </div>
-                    </div>
+                    )}
                   </div>
                 </div>
               </div>
@@ -617,8 +812,31 @@ const Projects = () => {
           })}
         </div>
 
+        {/* Image Popup Modal */}
+        {popupImage && (
+          <div className="image-modal-overlay" onClick={() => setPopupImage(null)}>
+            <div 
+              className="image-modal" 
+              onClick={e => e.stopPropagation()}
+            >
+              <img
+                src={popupImage}
+                alt="Project Image"
+                className="w-full max-h-full object-contain"
+              />
+              <button
+                className="image-modal-close"
+                onClick={() => setPopupImage(null)}
+                aria-label="Close"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
+
         {/* Call to Action */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 scroll-animate" id="call-to-action">
           <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-cyan-100/50 max-w-2xl mx-auto">
             <h3 className="text-2xl font-bold text-gray-800 mb-4">
               Interested in Collaboration?
@@ -636,7 +854,7 @@ const Projects = () => {
         {/* Testimonials Section */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           {/* Testimonial Form */}
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-cyan-100/50 shadow-lg">
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-cyan-100/50 shadow-lg scroll-animate scroll-animate-left" id="testimonial-form">
             <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
               <span className="w-2 h-2 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full mr-3"></span>
               Share Your Thoughts
@@ -699,7 +917,7 @@ const Projects = () => {
           </div>
 
           {/* Display Testimonials */}
-          <div className="space-y-6">
+          <div className="space-y-6 scroll-animate scroll-animate-right" id="testimonials-display">
             <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
               <span className="w-2 h-2 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full mr-3"></span>
               What People Say

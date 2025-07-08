@@ -1,8 +1,130 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const About = () => {
+  // Hook untuk animasi scroll
+  const [visibleElements, setVisibleElements] = useState(new Set());
+  const observerRef = useRef(null);
+  
+  // State untuk carousel sertifikat
+  const [currentCertIndex, setCurrentCertIndex] = useState(0);
+  
+  // Data sertifikat
+  const certifications = [
+    {
+      id: 1,
+      title: "Google Data Analytics",
+      subtitle: "Certificate",
+      image: "/images/cert-google-analytics.jpg",
+      color: "from-purple-100 to-pink-100",
+      borderColor: "border-purple-200/50 hover:border-purple-300/70",
+      textColor: "text-purple-600",
+      emoji: "🏅"
+    },
+    {
+      id: 2,
+      title: "Python for Data Science",
+      subtitle: "IBM Coursera",
+      image: "/images/cert-python-datascience.jpg",
+      color: "from-blue-100 to-cyan-100",
+      borderColor: "border-blue-200/50 hover:border-blue-300/70",
+      textColor: "text-blue-600",
+      emoji: "💻"
+    },
+    {
+      id: 3,
+      title: "Machine Learning",
+      subtitle: "Stanford Online",
+      image: "/images/cert-machine-learning.jpg",
+      color: "from-green-100 to-teal-100",
+      borderColor: "border-green-200/50 hover:border-green-300/70",
+      textColor: "text-green-600",
+      emoji: "📊"
+    },
+    {
+      id: 4,
+      title: "Financial Mathematics",
+      subtitle: "MIT OpenCourseWare",
+      image: "/images/cert-financial-math.jpg",
+      color: "from-orange-100 to-yellow-100",
+      borderColor: "border-orange-200/50 hover:border-orange-300/70",
+      textColor: "text-orange-600",
+      emoji: "🎯"
+    },
+    {
+      id: 5,
+      title: "React Development",
+      subtitle: "Meta Professional",
+      image: "/images/cert-react-dev.jpg",
+      color: "from-cyan-100 to-blue-100",
+      borderColor: "border-cyan-200/50 hover:border-cyan-300/70",
+      textColor: "text-cyan-600",
+      emoji: "⚛️"
+    },
+    {
+      id: 6,
+      title: "SQL Database Design",
+      subtitle: "Oracle University",
+      image: "/images/cert-sql.jpg",
+      color: "from-indigo-100 to-purple-100",
+      borderColor: "border-indigo-200/50 hover:border-indigo-300/70",
+      textColor: "text-indigo-600",
+      emoji: "🗄️"
+    }
+  ];
+  
+  // Fungsi navigasi carousel
+  const nextCert = () => {
+    setCurrentCertIndex((prev) => 
+      prev + 3 >= certifications.length ? 0 : prev + 3
+    );
+  };
+  
+  const prevCert = () => {
+    setCurrentCertIndex((prev) => 
+      prev - 3 < 0 ? Math.max(0, certifications.length - 3) : prev - 3
+    );
+  };
+  
+  // Mendapatkan 3 sertifikat untuk ditampilkan
+  const visibleCertifications = certifications.slice(currentCertIndex, currentCertIndex + 3);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements(prev => new Set([...prev, entry.target.dataset.animateId]));
+          } else {
+            // Hapus dari set agar bisa mengulang animasi
+            setVisibleElements(prev => {
+              const newSet = new Set(prev);
+              newSet.delete(entry.target.dataset.animateId);
+              return newSet;
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    observerRef.current = observer;
+
+    // Observe all elements with data-animate-id
+    const elementsToObserve = document.querySelectorAll('[data-animate-id]');
+    elementsToObserve.forEach(el => observer.observe(el));
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
+
   return (
-    <div className="min-h-screen py-20 pt-32 bg-gradient-to-br from-white via-cyan-200 via-blue-300 to-teal-800 relative overflow-hidden section-content">
+    <div id="about" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-white via-cyan-50 to-teal-800 relative overflow-hidden section-content">
       {/* Main Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-tr from-cyan-50 via-blue-200 to-teal-700 opacity-85 animate-gradient-flow"></div>
       
@@ -101,7 +223,14 @@ const About = () => {
       </div>
 
       <div className="container mx-auto px-6 relative z-10">
-        <div className="text-center mb-20">
+        <div 
+          className={`text-center mb-20 transition-all duration-1000 ${
+            visibleElements.has('about-header') 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-10'
+          }`}
+          data-animate-id="about-header"
+        >
           <div className="inline-block">
             <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-cyan-600 via-teal-600 to-blue-600 bg-clip-text text-transparent mb-4 relative">
               About Me
@@ -115,7 +244,14 @@ const About = () => {
 
         <div className="grid md:grid-cols-2 gap-16 items-start">
           <div className="space-y-8">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-cyan-100/50 shadow-lg">
+            <div 
+              className={`bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-cyan-100/50 shadow-lg transition-all duration-1000 delay-200 ${
+                visibleElements.has('about-journey') 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-10'
+              }`}
+              data-animate-id="about-journey"
+            >
               <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                 <span className="w-2 h-2 bg-gradient-to-r from-cyan-500 to-teal-500 rounded-full mr-3"></span>
                 My Journey
@@ -128,12 +264,22 @@ const About = () => {
                 and <span className="text-green-700 font-semibold">MPA ITS</span> as <span className="text-blue-700 font-semibold">Secretary and Treasurer</span> of the External Division.
               </p>
               <p className="text-gray-700 leading-relaxed font-light">
-                Passionate about <span className="text-green-600 font-semibold">financial mathematical modeling</span> with <span className="text-blue-600 font-semibold">AI technology</span> (machine learning & deep learning). 
-                Interested in pursuing careers as a <span className="text-teal-700 font-semibold">quant, quantitative researcher, trading analyst, or data analyst</span>.
+                Passionate about <span className="text-green-600 font-semibold">quantitative finance and financial mathematical modeling</span> with <span className="text-blue-600 font-semibold">AI technology</span> (machine learning & deep learning). 
+                Aspiring <span className="text-teal-700 font-semibold">Quantitative Researcher</span> with strong foundation in <span className="text-purple-600 font-semibold">Python programming</span> and data analysis libraries.
+              </p>
+              <p className="text-gray-700 leading-relaxed font-light">
+                Experienced with <span className="text-blue-600 font-semibold">Python ecosystem</span> including <span className="text-green-600 font-semibold">NumPy</span>, <span className="text-orange-600 font-semibold">Pandas</span>, <span className="text-purple-600 font-semibold">Matplotlib</span>, <span className="text-teal-600 font-semibold">Seaborn</span>, and other data science libraries for quantitative analysis and financial modeling.
               </p>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
+            <div 
+              className={`grid grid-cols-2 gap-4 transition-all duration-1000 delay-400 ${
+                visibleElements.has('about-activities') 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-10'
+              }`}
+              data-animate-id="about-activities"
+            >
               <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-cyan-100/30 hover:border-cyan-200/50 transition-all duration-300 group shadow-lg">
                 <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">🏆</div>
                 <h4 className="font-semibold text-gray-800 text-sm">OMITS 18</h4>
@@ -158,7 +304,103 @@ const About = () => {
           </div>
 
           <div className="space-y-6">
-            <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-teal-100/50 shadow-lg">
+            <div 
+              className={`bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-purple-100/50 shadow-lg transition-all duration-1000 delay-500 ${
+                visibleElements.has('about-certifications') 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-10'
+              }`}
+              data-animate-id="about-certifications"
+            >
+              <div className="flex items-center justify-between mb-6">
+                <h3 className="text-2xl font-bold text-gray-800 flex items-center">
+                  <span className="w-2 h-2 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full mr-3"></span>
+                  Certifications
+                </h3>
+                
+                {/* Navigation buttons */}
+                <div className="flex gap-2">
+                  <button
+                    onClick={prevCert}
+                    className="w-8 h-8 bg-purple-100 hover:bg-purple-200 rounded-full flex items-center justify-center text-purple-600 transition-all duration-200 hover:scale-110 disabled:opacity-50"
+                    disabled={certifications.length <= 3}
+                  >
+                    ←
+                  </button>
+                  <button
+                    onClick={nextCert}
+                    className="w-8 h-8 bg-purple-100 hover:bg-purple-200 rounded-full flex items-center justify-center text-purple-600 transition-all duration-200 hover:scale-110 disabled:opacity-50"
+                    disabled={certifications.length <= 3}
+                  >
+                    →
+                  </button>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-3 gap-4">
+                {visibleCertifications.map((cert, index) => (
+                  <div 
+                    key={cert.id}
+                    className={`transition-all duration-1000 ${
+                      visibleElements.has('about-certifications') 
+                        ? 'opacity-100 translate-y-0' 
+                        : 'opacity-0 translate-y-10'
+                    }`}
+                    style={{ transitionDelay: `${600 + index * 100}ms` }}
+                  >
+                    <div className="relative group cursor-pointer">
+                      <div className={`aspect-[4/3] bg-gradient-to-br ${cert.color} rounded-xl border ${cert.borderColor} transition-all duration-300 hover:scale-105 flex items-center justify-center overflow-hidden`}>
+                        <img 
+                          src={cert.image}
+                          alt={`${cert.title} Certificate`}
+                          className="w-full h-full object-cover rounded-xl"
+                          onError={(e) => {
+                            e.target.style.display = 'none';
+                            e.target.nextElementSibling.style.display = 'flex';
+                          }}
+                        />
+                        <div className={`w-full h-full bg-gradient-to-br ${cert.color} absolute inset-0 flex items-center justify-center ${cert.textColor}`} style={{display: 'none'}}>
+                          <div className="text-center">
+                            <div className="text-3xl mb-2">{cert.emoji}</div>
+                            <p className="text-sm font-medium">{cert.title}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="mt-2 text-center">
+                        <p className="text-xs font-medium text-gray-800">{cert.title}</p>
+                        <p className="text-xs text-gray-600">{cert.subtitle}</p>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Page indicator */}
+              {certifications.length > 3 && (
+                <div className="flex justify-center mt-4 gap-2">
+                  {Array.from({ length: Math.ceil(certifications.length / 3) }, (_, i) => (
+                    <button
+                      key={i}
+                      onClick={() => setCurrentCertIndex(i * 3)}
+                      className={`w-2 h-2 rounded-full transition-all duration-200 ${
+                        Math.floor(currentCertIndex / 3) === i 
+                          ? 'bg-purple-500 scale-125' 
+                          : 'bg-purple-200 hover:bg-purple-300'
+                      }`}
+                    />
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div 
+              className={`bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-teal-100/50 shadow-lg transition-all duration-1000 delay-700 ${
+                visibleElements.has('about-skills') 
+                  ? 'opacity-100 translate-y-0' 
+                  : 'opacity-0 translate-y-10'
+              }`}
+              data-animate-id="about-skills"
+            >
               <h3 className="text-2xl font-bold text-gray-800 mb-6 flex items-center">
                 <span className="w-2 h-2 bg-gradient-to-r from-teal-500 to-blue-500 rounded-full mr-3"></span>
                 Skills & Knowledge
@@ -167,11 +409,25 @@ const About = () => {
               <div className="space-y-6">
                 <div>
                   <h4 className="text-lg font-semibold text-cyan-700 mb-3 flex items-center">
-                    <span className="text-sm mr-2">{'{ }'}</span>
-                    Programming & Tools
+                    <span className="text-sm mr-2">🐍</span>
+                    Python for Quantitative Analysis
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['Java', 'Python', 'JavaScript', 'HTML/CSS', 'React', 'Electron', 'Jupyter', 'LaTeX'].map((skill) => (
+                    {['NumPy', 'Pandas', 'Matplotlib', 'Seaborn', 'SciPy', 'Scikit-learn', 'QuantLib', 'Jupyter', 'YFinance'].map((skill) => (
+                      <span key={skill} className="px-3 py-1.5 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-800 rounded-lg text-sm font-medium border border-purple-200/50 hover:border-purple-300/70 transition-all duration-200 hover:scale-105">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+                
+                <div>
+                  <h4 className="text-lg font-semibold text-cyan-700 mb-3 flex items-center">
+                    <span className="text-sm mr-2">{'{ }'}</span>
+                    Programming & Development
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {['Python', 'Java', 'JavaScript', 'React', 'HTML/CSS', 'Git', 'Electron', 'LaTeX'].map((skill) => (
                       <span key={skill} className="px-3 py-1.5 bg-gradient-to-r from-cyan-50 to-cyan-100 text-cyan-800 rounded-lg text-sm font-medium border border-cyan-200/50 hover:border-cyan-300/70 transition-all duration-200 hover:scale-105">
                         {skill}
                       </span>
@@ -182,10 +438,10 @@ const About = () => {
                 <div>
                   <h4 className="text-lg font-semibold text-teal-700 mb-3 flex items-center">
                     <span className="text-sm mr-2">∫</span>
-                    Mathematics Courses
+                    Mathematics & Statistics
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['Calculus I & II', 'Linear Algebra', 'Mathematical Logic', 'Discrete Math', 'Statistics', 'Analytical Geometry', 'Algorithms'].map((area) => (
+                    {['Calculus I & II', 'Linear Algebra', 'Statistics', 'Probability Theory', 'Discrete Math', 'Analytical Geometry', 'Stochastic Processes'].map((area) => (
                       <span key={area} className="px-3 py-1.5 bg-gradient-to-r from-teal-50 to-teal-100 text-teal-800 rounded-lg text-sm font-medium border border-teal-200/50 hover:border-teal-300/70 transition-all duration-200 hover:scale-105">
                         {area}
                       </span>
@@ -195,11 +451,11 @@ const About = () => {
 
                 <div>
                   <h4 className="text-lg font-semibold text-blue-700 mb-3 flex items-center">
-                    <span className="text-sm mr-2">∞</span>
-                    Interests
+                    <span className="text-sm mr-2">📊</span>
+                    Quantitative Finance Focus
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['Problem Solving', 'Web Development', 'Data Analysis', 'Algorithm Design', 'Mathematical Modeling'].map((interest) => (
+                    {['Financial Modeling', 'Risk Management', 'Portfolio Optimization', 'Time Series Analysis', 'Derivatives Pricing', 'Algorithmic Trading', 'Market Data Analysis'].map((interest) => (
                       <span key={interest} className="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 rounded-lg text-sm font-medium border border-blue-200/50 hover:border-blue-300/70 transition-all duration-200 hover:scale-105">
                         {interest}
                       </span>

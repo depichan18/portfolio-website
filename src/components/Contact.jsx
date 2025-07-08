@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Mail, Instagram, MapPin, Phone } from 'lucide-react';
 
 const Contact = () => {
@@ -7,6 +7,45 @@ const Contact = () => {
     email: '',
     message: ''
   });
+
+  // Hook untuk animasi scroll
+  const [visibleElements, setVisibleElements] = useState(new Set());
+  const observerRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setVisibleElements(prev => new Set([...prev, entry.target.dataset.animateId]));
+          } else {
+            // Hapus dari set agar bisa mengulang animasi
+            setVisibleElements(prev => {
+              const newSet = new Set(prev);
+              newSet.delete(entry.target.dataset.animateId);
+              return newSet;
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.1,
+        rootMargin: '0px 0px -100px 0px'
+      }
+    );
+
+    observerRef.current = observer;
+
+    // Observe all elements with data-animate-id
+    const elementsToObserve = document.querySelectorAll('[data-animate-id]');
+    elementsToObserve.forEach(el => observer.observe(el));
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+    };
+  }, []);
 
   const handleChange = (e) => {
     setFormData({
@@ -24,7 +63,7 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen py-20 pt-32 bg-gradient-to-br from-cyan-900 via-teal-800 to-blue-900 relative overflow-hidden">
+    <div id="contact" className="min-h-screen py-20 pt-32 bg-gradient-to-br from-cyan-900 via-teal-800 to-blue-900 relative overflow-hidden">
       {/* Animated Background Gradient */}
       <div className="absolute inset-0 bg-gradient-to-tr from-cyan-800/60 via-teal-700/40 to-blue-800/50 opacity-80 animate-pulse-slow"></div>
       
@@ -100,7 +139,14 @@ const Contact = () => {
 
       <div className="container mx-auto px-6 relative z-10 max-w-4xl">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div 
+          className={`text-center mb-16 transition-all duration-1000 ${
+            visibleElements.has('contact-header') 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-10'
+          }`}
+          data-animate-id="contact-header"
+        >
           <h2 className="text-4xl md:text-5xl font-light bg-gradient-to-r from-cyan-300 via-teal-300 to-blue-300 bg-clip-text text-transparent mb-6">
             Let's Connect
           </h2>
@@ -113,7 +159,14 @@ const Contact = () => {
         {/* Main Content */}
         <div className="grid md:grid-cols-5 gap-12 mb-16">
           {/* Contact Form */}
-          <div className="md:col-span-3">
+          <div 
+            className={`md:col-span-3 transition-all duration-1000 delay-200 ${
+              visibleElements.has('contact-form') 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 -translate-x-10'
+            }`}
+            data-animate-id="contact-form"
+          >
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-cyan-200/20 shadow-2xl">
               <form onSubmit={handleSubmit} className="space-y-8">
                 <div className="grid grid-cols-2 gap-6">
@@ -167,7 +220,14 @@ const Contact = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="md:col-span-2 space-y-8">
+          <div 
+            className={`md:col-span-2 space-y-8 transition-all duration-1000 delay-400 ${
+              visibleElements.has('contact-info') 
+                ? 'opacity-100 translate-x-0' 
+                : 'opacity-0 translate-x-10'
+            }`}
+            data-animate-id="contact-info"
+          >
             {/* Direct Contact */}
             <div className="bg-white/10 backdrop-blur-md rounded-3xl p-8 border border-cyan-200/20 shadow-2xl">
               <h3 className="text-xl font-medium text-white mb-6">Direct Contact</h3>
@@ -259,7 +319,14 @@ const Contact = () => {
         </div>
 
         {/* Mathematical Quote */}
-        <div className="text-center py-8 border-t border-cyan-300/20">
+        <div 
+          className={`text-center py-8 border-t border-cyan-300/20 transition-all duration-1000 delay-600 ${
+            visibleElements.has('contact-quote') 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-10'
+          }`}
+          data-animate-id="contact-quote"
+        >
           <div className="inline-flex items-center gap-4 text-gray-300">
             <span className="text-2xl text-cyan-400">∂</span>
             <p className="font-light italic">
@@ -271,7 +338,14 @@ const Contact = () => {
         </div>
 
         {/* Footer */}
-        <div className="text-center pt-8">
+        <div 
+          className={`text-center pt-8 transition-all duration-1000 delay-800 ${
+            visibleElements.has('contact-footer') 
+              ? 'opacity-100 translate-y-0' 
+              : 'opacity-0 translate-y-10'
+          }`}
+          data-animate-id="contact-footer"
+        >
           <p className="text-gray-400 font-light">
             © 2025 Devi Rosa Aprilla • Made with 💝 and ∞ curiosity
           </p>
