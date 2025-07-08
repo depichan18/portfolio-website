@@ -5,11 +5,18 @@ import {
   SiLatex, SiElectron
 } from 'react-icons/si';
 import { 
-  FaJava, FaChartLine, FaCalculator 
+  FaJava, FaChartLine, FaCalculator, FaChartBar, FaChartPie,
+  FaPercentage, FaBalanceScale, FaCog, FaRobot, FaDatabase
 } from 'react-icons/fa';
 import { 
-  BiMath, BiLineChart 
+  BiMath, BiLineChart, BiTrendingUp, BiStats, BiAnalyse 
 } from 'react-icons/bi';
+import { 
+  MdTrendingUp, MdAnalytics, MdTimeline, MdPieChart, MdShowChart
+} from 'react-icons/md';
+import { 
+  RiStockLine, RiExchangeLine, RiFunctionLine, RiBarChartBoxLine
+} from 'react-icons/ri';
 
 const About = () => {
   // Hook untuk animasi scroll
@@ -495,15 +502,27 @@ const About = () => {
                 </div>
                 <div>
                   <h4 className="text-lg font-semibold text-blue-700 mb-3 flex items-center">
-                    <span className="text-sm mr-2">📊</span>
+                    <FaChartBar className="text-lg mr-2 text-blue-600" />
                     Quantitative Finance Focus
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['Financial Modeling', 'Risk Management', 'Portfolio Optimization', 'Time Series Analysis', 'Derivatives Pricing', 'Algorithmic Trading', 'Market Data Analysis'].map((interest) => (
-                      <span key={interest} className="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 rounded-lg text-sm font-medium border border-blue-200/50 hover:border-blue-300/70 transition-all duration-200 hover:scale-105">
-                        {interest}
-                      </span>
-                    ))}
+                    {[
+                      { name: 'Financial Modeling', icon: MdAnalytics, color: 'text-blue-600' },
+                      { name: 'Risk Management', icon: FaBalanceScale, color: 'text-red-600' },
+                      { name: 'Portfolio Optimization', icon: FaChartPie, color: 'text-green-600' },
+                      { name: 'Time Series Analysis', icon: MdTimeline, color: 'text-purple-600' },
+                      { name: 'Derivatives Pricing', icon: RiStockLine, color: 'text-orange-600' },
+                      { name: 'Algorithmic Trading', icon: FaRobot, color: 'text-cyan-600' },
+                      { name: 'Market Data Analysis', icon: BiAnalyse, color: 'text-teal-600' }
+                    ].map((interest) => {
+                      const IconComponent = interest.icon;
+                      return (
+                        <span key={interest.name} className="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 rounded-lg text-sm font-medium border border-blue-200/50 hover:border-blue-300/70 transition-all duration-200 hover:scale-105 flex items-center gap-1.5">
+                          <IconComponent className={`text-sm ${interest.color}`} />
+                          {interest.name}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
                 <div>
@@ -536,15 +555,27 @@ const About = () => {
                 
                 <div>
                   <h4 className="text-lg font-semibold text-teal-700 mb-3 flex items-center">
-                    <span className="text-sm mr-2">∫</span>
+                    <BiMath className="text-lg mr-2 text-teal-600" />
                     Mathematics & Statistics
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['Calculus I & II', 'Linear Algebra', 'Statistics', 'Probability Theory', 'Discrete Math', 'Analytical Geometry', 'Stochastic Processes'].map((area) => (
-                      <span key={area} className="px-3 py-1.5 bg-gradient-to-r from-teal-50 to-teal-100 text-teal-800 rounded-lg text-sm font-medium border border-teal-200/50 hover:border-teal-300/70 transition-all duration-200 hover:scale-105">
-                        {area}
-                      </span>
-                    ))}
+                    {[
+                      { name: 'Calculus I & II', icon: RiFunctionLine, color: 'text-blue-600' },
+                      { name: 'Linear Algebra', icon: BiMath, color: 'text-purple-600' },
+                      { name: 'Statistics', icon: RiBarChartBoxLine, color: 'text-green-600' },
+                      { name: 'Probability Theory', icon: FaPercentage, color: 'text-orange-600' },
+                      { name: 'Discrete Math', icon: FaCog, color: 'text-cyan-600' },
+                      { name: 'Analytical Geometry', icon: MdShowChart, color: 'text-red-600' },
+                      { name: 'Stochastic Processes', icon: BiTrendingUp, color: 'text-indigo-600' }
+                    ].map((area) => {
+                      const IconComponent = area.icon;
+                      return (
+                        <span key={area.name} className="px-3 py-1.5 bg-gradient-to-r from-teal-50 to-teal-100 text-teal-800 rounded-lg text-sm font-medium border border-teal-200/50 hover:border-teal-300/70 transition-all duration-200 hover:scale-105 flex items-center gap-1.5">
+                          <IconComponent className={`text-sm ${area.color}`} />
+                          {area.name}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
               </div>

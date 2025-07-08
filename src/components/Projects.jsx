@@ -1,4 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { 
+  FaStore, FaGamepad, FaCalculator, FaUser, FaBrain, 
+  FaBook, FaLock, FaFileAlt, FaHeart, FaShoppingCart,
+  FaComments, FaPaperPlane
+} from 'react-icons/fa';
+import { 
+  MdDashboard, MdGames, MdAccountBalance, MdWeb, MdSchool
+} from 'react-icons/md';
+import { 
+  HiOutlineDocumentText, HiOutlineHeart
+} from 'react-icons/hi';
 
 const Projects = () => {
   const [hoveredProject, setHoveredProject] = useState(null);
@@ -75,15 +86,15 @@ const Projects = () => {
       name: "John Doe",
       role: "Software Developer",
       message: "Amazing mathematical approach to problem solving! The projects show great attention to detail and innovative thinking.",
-      avatar: "👨‍💻",
+      avatar: "developer",
       timestamp: new Date().toLocaleDateString()
     },
     {
       id: 2,
       name: "Sarah Wilson",
-      role: "Data Scientist",
+      role: "Data Scientist", 
       message: "Impressive combination of mathematics and programming. The Hill Cipher implementation was particularly well-documented.",
-      avatar: "👩‍🔬",
+      avatar: "scientist",
       timestamp: new Date().toLocaleDateString()
     }
   ]);
@@ -110,7 +121,7 @@ const Projects = () => {
         name: testimonialForm.name,
         role: testimonialForm.role || 'Visitor',
         message: testimonialForm.message,
-        avatar: "👤",
+        avatar: "visitor",
         timestamp: new Date().toLocaleDateString()
       };
       setTestimonials([newTestimonial, ...testimonials]);
@@ -660,19 +671,21 @@ const Projects = () => {
                 // Calculate delay for staggered animation
                 const delayClass = `scroll-animate-delay-${Math.min(6, (index % 6) + 1)}`;
 
-                // Define emoticons based on project ID
-                const emoticons = {
-                  1: '📦',
-                  2: '🐾',
-                  3: '🔄',
-                  4: '💰',
-                  5: '🧮',
-                  6: '📘',
-                  7: '🔐',
-                  8: '📄',
-                  9: '🖤',
-                  10: '🛒'
+                // Define icons based on project ID
+                const projectIcons = {
+                  1: FaStore,           // Depi Store Manager
+                  2: FaGamepad,         // Paw Jump Game
+                  3: MdAccountBalance,  // Bookkeeping Application
+                  4: MdWeb,             // Portfolio Website
+                  5: MdSchool,          // OMITS 18 Math Problems
+                  6: FaBook,            // Quant Roadmap
+                  7: FaLock,            // Hill Cipher nxn Website
+                  8: HiOutlineDocumentText, // LaTeX Academic Documents
+                  9: HiOutlineHeart,    // Kuromi To-Do List
+                  10: FaShoppingCart    // GUI Cashier Application
                 };
+
+                const IconComponent = projectIcons[project.id] || FaUser;
 
                 return (
                   <div key={project.id} className={`w-1/3 flex-shrink-0 px-3 scroll-animate ${delayClass}`} id={`project-${project.id}`}>
@@ -829,8 +842,10 @@ const Projects = () => {
 
                       {/* Emoticon, Title, and Category Tag in one row (moved below image) */}
                       <div className="flex items-center mb-3 mt-4 px-4 justify-center">
-                        {/* Emoticon */}
-                        <span className="text-xl flex-shrink-0">{emoticons[project.id] || '❓'}</span>
+                        {/* Icon */}
+                        <div className="flex-shrink-0 w-6 h-6 flex items-center justify-center">
+                          <IconComponent className="text-lg text-cyan-600 group-hover:text-cyan-500 transition-colors duration-300" />
+                        </div>
                         {/* Title */}
                         <h3 className="flex-1 text-center text-lg font-bold text-cyan-800 group-hover:text-cyan-600 transition-colors duration-300 mx-2 truncate">
                           {project.title}
@@ -881,10 +896,10 @@ const Projects = () => {
                           <div className="flex gap-2 mt-3">
                             <a 
                               href={project.link}
-                              className="flex items-center justify-center gap-1 flex-1 px-3 py-2 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-sm font-medium rounded-lg hover:from-cyan-600 hover:to-teal-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-200/50"
+                              className="flex items-center justify-center gap-1.5 flex-1 px-3 py-2 bg-gradient-to-r from-cyan-500 to-teal-500 text-white text-sm font-medium rounded-lg hover:from-cyan-600 hover:to-teal-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-200/50"
                               onClick={(e) => e.stopPropagation()}
                             >
-                              <span>🚀</span>
+                              <MdWeb className="text-sm" />
                               View Project
                             </a>
                             {project.github && (
@@ -893,7 +908,7 @@ const Projects = () => {
                                 className="flex items-center justify-center px-3 py-2 border border-gray-300 text-gray-700 text-sm font-medium rounded-lg hover:border-cyan-300 hover:text-cyan-700 hover:bg-cyan-50 transition-all duration-300 hover:scale-105"
                                 onClick={(e) => e.stopPropagation()}
                               >
-                                📁
+                                <FaFileAlt className="text-sm" />
                               </a>
                             )}
                           </div>
@@ -1048,7 +1063,7 @@ const Projects = () => {
                 type="submit"
                 className="w-full flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white rounded-lg font-semibold hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-cyan-200/50 text-sm"
               >
-                <span>💬</span>
+                <FaPaperPlane className="text-sm" />
                 Submit Testimonial
               </button>
             </form>
@@ -1061,30 +1076,43 @@ const Projects = () => {
               What People Say
             </h3>
             <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
-              {testimonials.map((testimonial) => (
-                <div 
-                  key={testimonial.id}
-                  className="bg-white/70 backdrop-blur-sm rounded-xl p-6 border border-gray-100/50 shadow-lg hover:shadow-xl transition-all duration-300"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-cyan-100 to-teal-100 rounded-full flex items-center justify-center text-2xl">
-                      {testimonial.avatar}
-                    </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between items-start mb-2">
-                        <div>
-                          <h4 className="font-semibold text-gray-800 text-sm">{testimonial.name}</h4>
-                          <p className="text-xs text-gray-500">{testimonial.role}</p>
-                        </div>
-                        <span className="text-xs text-gray-400">{testimonial.timestamp}</span>
+              {testimonials.map((testimonial) => {
+                // Function to get avatar icon based on role/avatar type
+                const getAvatarIcon = (avatar, role) => {
+                  if (avatar === "developer" || role?.toLowerCase().includes("developer")) {
+                    return <FaUser className="text-cyan-600" />;
+                  } else if (avatar === "scientist" || role?.toLowerCase().includes("scientist")) {
+                    return <FaBrain className="text-purple-600" />;
+                  } else {
+                    return <FaUser className="text-gray-600" />;
+                  }
+                };
+
+                return (
+                  <div 
+                    key={testimonial.id}
+                    className="bg-white/70 backdrop-blur-sm rounded-xl p-6 border border-gray-100/50 shadow-lg hover:shadow-xl transition-all duration-300"
+                  >
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-cyan-100 to-teal-100 rounded-full flex items-center justify-center">
+                        {getAvatarIcon(testimonial.avatar, testimonial.role)}
                       </div>
-                      <p className="text-gray-600 text-sm leading-relaxed font-light">
-                        "{testimonial.message}"
-                      </p>
+                      <div className="flex-1">
+                        <div className="flex justify-between items-start mb-2">
+                          <div>
+                            <h4 className="font-semibold text-gray-800 text-sm">{testimonial.name}</h4>
+                            <p className="text-xs text-gray-500">{testimonial.role}</p>
+                          </div>
+                          <span className="text-xs text-gray-400">{testimonial.timestamp}</span>
+                        </div>
+                        <p className="text-gray-600 text-sm leading-relaxed font-light">
+                          "{testimonial.message}"
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </div>
