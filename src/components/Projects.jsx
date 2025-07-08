@@ -176,8 +176,8 @@ const Projects = () => {
       tags: ["JavaFX", "Accounting", "SQLite", "JPA", "Hibernate", "Maven"],
       gradientColor: "from-green-400 to-green-400",
       icon: "🔄",
-      link: "https://github.com/your-username/bookkeeping-app",
-      github: "https://github.com/your-username/bookkeeping-app",
+      link: "https://github.com/depichan18/bookkeeping-app",
+      github: "https://github.com/depichan18/bookkeeping-app",
       images: [
         "/images/bookkeeping-1.png",
         "/images/bookkeeping-2.png",
@@ -199,8 +199,8 @@ const Projects = () => {
       tags: ["React", "JavaScript", "Vite.js", "Tailwind CSS", "Web Design"],
       gradientColor: "from-green-400 to-green-400",
       icon: "💰",
-      link: "https://github.com/your-username/portfolio-website",
-      github: "https://github.com/your-username/portfolio-website",
+      link: "https://github.com/depichan18/portfolio-website",
+      github: "https://github.com/depichan18/portfolio-website",
       images: [
         "/api/placeholder/600/400",
         "/api/placeholder/600/400",
@@ -222,8 +222,8 @@ const Projects = () => {
       tags: ["LaTeX","Math Olympiad", "Mathematics", "Education", "Problem Design"],
       gradientColor: "from-purple-400 to-cyan-400",
       icon: "🧮",
-      link: "https://github.com/your-username/omits-math-problems",
-      github: "https://github.com/your-username/omits-math-problems",
+      link: "https://github.com/depichan18/OMITS-18",
+      github: "https://github.com/depichan18/OMITS-18",
       images: [
         "/api/placeholder/600/400",
         "/api/placeholder/600/400",
@@ -245,8 +245,8 @@ const Projects = () => {
       tags: ["Cute", "Quant", "React", "Interactive", "Productivity", "Tailwind CSS"],
       gradientColor: "from-purple-400 to-cyan-400",
       icon: "📘",
-      link: "https://github.com/your-username/quant-roadmap",
-      github: "https://github.com/your-username/quant-roadmap",
+      link: "https://github.com/depichan18/quant-roadmap",
+      github: "https://github.com/depichan18/quant-roadmap",
       images: [
         "/images/quant-1.png",
         "/images/quant-2.png",
@@ -835,22 +835,6 @@ const Projects = () => {
           </div>
         )}
 
-        {/* Call to Action */}
-        <div className="text-center mb-16 scroll-animate" id="call-to-action">
-          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-cyan-100/50 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-bold text-gray-800 mb-4">
-              Interested in Collaboration?
-            </h3>
-            <p className="text-gray-600 mb-6 font-light">
-              I'm always excited to work on projects that combine mathematics and technology. 
-              Let's create something amazing together!
-            </p>
-            <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-full hover:from-cyan-600 hover:to-teal-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-200/50">
-              Get In Touch
-            </button>
-          </div>
-        </div>
-
         {/* Testimonials Section */}
         <div className="grid md:grid-cols-2 gap-12 mb-16">
           {/* Testimonial Form */}
@@ -948,6 +932,21 @@ const Projects = () => {
                 </div>
               ))}
             </div>
+          </div>
+        </div>
+        {/* Call to Action */}
+        <div className="text-center mb-16 scroll-animate" id="call-to-action">
+          <div className="bg-white/60 backdrop-blur-sm rounded-2xl p-8 border border-cyan-100/50 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-gray-800 mb-4">
+              Interested in Collaboration?
+            </h3>
+            <p className="text-gray-600 mb-6 font-light">
+              I'm always excited to work on projects that combine mathematics and technology. 
+              Let's create something amazing together!
+            </p>
+            <button className="px-8 py-3 bg-gradient-to-r from-cyan-500 to-teal-500 text-white font-semibold rounded-full hover:from-cyan-600 hover:to-teal-600 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-cyan-200/50">
+              Get In Touch
+            </button>
           </div>
         </div>
       </div>

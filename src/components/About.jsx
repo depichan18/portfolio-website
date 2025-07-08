@@ -281,22 +281,66 @@ const About = () => {
               data-animate-id="about-activities"
             >
               <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-cyan-100/30 hover:border-cyan-200/50 transition-all duration-300 group shadow-lg">
-                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">🏆</div>
+                <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <img 
+                    src="/images/omits.png" 
+                    alt="OMITS Logo" 
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextElementSibling.style.display = 'block';
+                    }}
+                  />
+                  <div className="text-3xl hidden">🏆</div>
+                </div>
                 <h4 className="font-semibold text-gray-800 text-sm">OMITS 18</h4>
                 <p className="text-xs text-gray-600 font-light">Question Maker</p>
               </div>
               <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-teal-100/30 hover:border-teal-200/50 transition-all duration-300 group shadow-lg">
-                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">🌐</div>
+                <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <img 
+                    src="/images/ifls.png" 
+                    alt="IFLS Logo" 
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextElementSibling.style.display = 'block';
+                    }}
+                  />
+                  <div className="text-3xl hidden">🌐</div>
+                </div>
                 <h4 className="font-semibold text-gray-800 text-sm">UKM IFLS</h4>
                 <p className="text-xs text-gray-600 font-light">SRD Division</p>
               </div>
               <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-blue-100/30 hover:border-blue-200/50 transition-all duration-300 group shadow-lg">
-                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">💼</div>
+                <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <img 
+                    src="/images/mpa.png" 
+                    alt="MPA Logo" 
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextElementSibling.style.display = 'block';
+                    }}
+                  />
+                  <div className="text-3xl hidden">💼</div>
+                </div>
                 <h4 className="font-semibold text-gray-800 text-sm">MPA ITS</h4>
-                <p className="text-xs text-gray-600 font-light">Secretary & Treasurer</p>
+                <p className="text-xs text-gray-600 font-light">Secretary & Treasurer External</p>
               </div>
               <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-green-100/30 hover:border-green-200/50 transition-all duration-300 group shadow-lg">
-                <div className="text-2xl mb-3 group-hover:scale-110 transition-transform duration-300">📈</div>
+                <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
+                  <img 
+                    src="/images/quant.png" 
+                    alt="Quantitative Finance Logo" 
+                    className="w-full h-full object-contain"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextElementSibling.style.display = 'block';
+                    }}
+                  />
+                  <div className="text-3xl hidden">📈</div>
+                </div>
                 <h4 className="font-semibold text-gray-800 text-sm">Financial AI</h4>
                 <p className="text-xs text-gray-600 font-light">Research Interest</p>
               </div>
@@ -420,7 +464,19 @@ const About = () => {
                     ))}
                   </div>
                 </div>
-                
+                <div>
+                  <h4 className="text-lg font-semibold text-blue-700 mb-3 flex items-center">
+                    <span className="text-sm mr-2">📊</span>
+                    Quantitative Finance Focus
+                  </h4>
+                  <div className="flex flex-wrap gap-2">
+                    {['Financial Modeling', 'Risk Management', 'Portfolio Optimization', 'Time Series Analysis', 'Derivatives Pricing', 'Algorithmic Trading', 'Market Data Analysis'].map((interest) => (
+                      <span key={interest} className="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 rounded-lg text-sm font-medium border border-blue-200/50 hover:border-blue-300/70 transition-all duration-200 hover:scale-105">
+                        {interest}
+                      </span>
+                    ))}
+                  </div>
+                </div>
                 <div>
                   <h4 className="text-lg font-semibold text-cyan-700 mb-3 flex items-center">
                     <span className="text-sm mr-2">{'{ }'}</span>
@@ -444,20 +500,6 @@ const About = () => {
                     {['Calculus I & II', 'Linear Algebra', 'Statistics', 'Probability Theory', 'Discrete Math', 'Analytical Geometry', 'Stochastic Processes'].map((area) => (
                       <span key={area} className="px-3 py-1.5 bg-gradient-to-r from-teal-50 to-teal-100 text-teal-800 rounded-lg text-sm font-medium border border-teal-200/50 hover:border-teal-300/70 transition-all duration-200 hover:scale-105">
                         {area}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="text-lg font-semibold text-blue-700 mb-3 flex items-center">
-                    <span className="text-sm mr-2">📊</span>
-                    Quantitative Finance Focus
-                  </h4>
-                  <div className="flex flex-wrap gap-2">
-                    {['Financial Modeling', 'Risk Management', 'Portfolio Optimization', 'Time Series Analysis', 'Derivatives Pricing', 'Algorithmic Trading', 'Market Data Analysis'].map((interest) => (
-                      <span key={interest} className="px-3 py-1.5 bg-gradient-to-r from-blue-50 to-blue-100 text-blue-800 rounded-lg text-sm font-medium border border-blue-200/50 hover:border-blue-300/70 transition-all duration-200 hover:scale-105">
-                        {interest}
                       </span>
                     ))}
                   </div>
