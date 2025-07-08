@@ -4,7 +4,7 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Projects from './components/Projects'
 import Contact from './components/Contact'
-import SectionTransition from './components/SectionTransition'
+// import SectionTransition removed as all section transitions have been removed
 import './App.css'
 
 function App() {
@@ -13,24 +13,16 @@ function App() {
       <Navbar />
       
       {/* Hero Section */}
-      <SectionTransition id="hero">
-        <Hero />
-      </SectionTransition>
+      <Hero />
       
-      {/* About Section with Transition */}
-      <SectionTransition id="about">
-        <About />
-      </SectionTransition>
+      {/* About Section */}
+      <About />
       
-      {/* Projects Section with Transition */}
-      <SectionTransition id="projects">
-        <Projects />
-      </SectionTransition>
+      {/* Projects Section */}
+      <Projects />
       
-      {/* Contact Section with Transition */}
-      <SectionTransition id="contact">
-        <Contact />
-      </SectionTransition>
+      {/* Contact Section */}
+      <Contact />
     </div>
   )
 }
