@@ -1,4 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
+import { 
+  SiPython, SiNumpy, SiPandas, SiJupyter, SiScikitlearn,
+  SiJavascript, SiReact, SiHtml5, SiCss3, SiGit,
+  SiLatex, SiElectron
+} from 'react-icons/si';
+import { 
+  FaJava, FaChartLine, FaCalculator 
+} from 'react-icons/fa';
+import { 
+  BiMath, BiLineChart 
+} from 'react-icons/bi';
 
 const About = () => {
   // Hook untuk animasi scroll
@@ -457,15 +468,29 @@ const About = () => {
               <div className="space-y-6">
                 <div>
                   <h4 className="text-lg font-semibold text-cyan-700 mb-3 flex items-center">
-                    <span className="text-sm mr-2">🐍</span>
+                    <SiPython className="text-lg mr-2 text-blue-600" />
                     Python for Quantitative Analysis
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['NumPy', 'Pandas', 'Matplotlib', 'Seaborn', 'SciPy', 'Scikit-learn', 'QuantLib', 'Jupyter', 'YFinance'].map((skill) => (
-                      <span key={skill} className="px-3 py-1.5 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-800 rounded-lg text-sm font-medium border border-purple-200/50 hover:border-purple-300/70 transition-all duration-200 hover:scale-105">
-                        {skill}
-                      </span>
-                    ))}
+                    {[
+                      { name: 'NumPy', icon: SiNumpy, color: 'text-blue-600' },
+                      { name: 'Pandas', icon: SiPandas, color: 'text-purple-600' },
+                      { name: 'Matplotlib', icon: FaChartLine, color: 'text-orange-600' },
+                      { name: 'Seaborn', icon: BiLineChart, color: 'text-teal-600' },
+                      { name: 'SciPy', icon: FaCalculator, color: 'text-blue-700' },
+                      { name: 'Scikit-learn', icon: SiScikitlearn, color: 'text-orange-500' },
+                      { name: 'QuantLib', icon: BiMath, color: 'text-green-600' },
+                      { name: 'Jupyter', icon: SiJupyter, color: 'text-orange-400' },
+                      { name: 'YFinance', icon: FaChartLine, color: 'text-green-500' }
+                    ].map((skill) => {
+                      const IconComponent = skill.icon;
+                      return (
+                        <span key={skill.name} className="px-3 py-1.5 bg-gradient-to-r from-purple-50 to-purple-100 text-purple-800 rounded-lg text-sm font-medium border border-purple-200/50 hover:border-purple-300/70 transition-all duration-200 hover:scale-105 flex items-center gap-1.5">
+                          <IconComponent className={`text-sm ${skill.color}`} />
+                          {skill.name}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
                 <div>
@@ -487,11 +512,25 @@ const About = () => {
                     Programming & Development
                   </h4>
                   <div className="flex flex-wrap gap-2">
-                    {['Python', 'Java', 'JavaScript', 'React', 'HTML/CSS', 'Git', 'Electron', 'LaTeX'].map((skill) => (
-                      <span key={skill} className="px-3 py-1.5 bg-gradient-to-r from-cyan-50 to-cyan-100 text-cyan-800 rounded-lg text-sm font-medium border border-cyan-200/50 hover:border-cyan-300/70 transition-all duration-200 hover:scale-105">
-                        {skill}
-                      </span>
-                    ))}
+                    {[
+                      { name: 'Python', icon: SiPython, color: 'text-blue-600' },
+                      { name: 'Java', icon: FaJava, color: 'text-red-600' },
+                      { name: 'JavaScript', icon: SiJavascript, color: 'text-yellow-500' },
+                      { name: 'React', icon: SiReact, color: 'text-cyan-500' },
+                      { name: 'HTML', icon: SiHtml5, color: 'text-orange-600' },
+                      { name: 'CSS', icon: SiCss3, color: 'text-blue-500' },
+                      { name: 'Git', icon: SiGit, color: 'text-orange-500' },
+                      { name: 'Electron', icon: SiElectron, color: 'text-teal-600' },
+                      { name: 'LaTeX', icon: SiLatex, color: 'text-green-600' }
+                    ].map((skill) => {
+                      const IconComponent = skill.icon;
+                      return (
+                        <span key={skill.name} className="px-3 py-1.5 bg-gradient-to-r from-cyan-50 to-cyan-100 text-cyan-800 rounded-lg text-sm font-medium border border-cyan-200/50 hover:border-cyan-300/70 transition-all duration-200 hover:scale-105 flex items-center gap-1.5">
+                          <IconComponent className={`text-sm ${skill.color}`} />
+                          {skill.name}
+                        </span>
+                      );
+                    })}
                   </div>
                 </div>
                 
