@@ -178,7 +178,7 @@ const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/20 border border-cyan-200/30 rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 font-light text-white placeholder-gray-400"
+                      className="w-full px-4 py-3 bg-white/20 border border-cyan-200/30 rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 font-light text-white placeholder-gray-200"
                       placeholder="Your name"
                     />
                   </div>
@@ -190,7 +190,7 @@ const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-3 bg-white/20 border border-cyan-200/30 rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 font-light text-white placeholder-gray-400"
+                      className="w-full px-4 py-3 bg-white/20 border border-cyan-200/30 rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 font-light text-white placeholder-gray-200"
                       placeholder="your@email.com"
                     />
                   </div>
@@ -204,7 +204,7 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={6}
-                    className="w-full px-4 py-3 bg-white/20 border border-cyan-200/30 rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 resize-none font-light text-white placeholder-gray-400"
+                    className="w-full px-4 py-3 bg-white/20 border border-cyan-200/30 rounded-xl focus:ring-2 focus:ring-cyan-400 focus:border-transparent transition-all duration-300 resize-none font-light text-white placeholder-gray-200"
                     placeholder="Share your ideas..."
                   />
                 </div>
@@ -238,7 +238,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">Surabaya, Indonesia</p>
-                    <p className="text-gray-300 text-sm">East Java</p>
+                    <p className="text-gray-300 text-sm text-left">East Java</p>
                   </div>
                 </div>
                 
@@ -248,7 +248,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">depichan18@gmail.com</p>
-                    <p className="text-gray-300 text-sm">Email me anytime</p>
+                    <p className="text-gray-300 text-sm text-left">Email me anytime</p>
                   </div>
                 </div>
                 
@@ -258,7 +258,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <p className="text-white font-medium">+62 851-5630-2120</p>
-                    <p className="text-gray-300 text-sm">Available 9AM - 6PM</p>
+                    <p className="text-gray-300 text-sm text-left">Available 9AM - 6PM</p>
                   </div>
                 </div>
               </div>
