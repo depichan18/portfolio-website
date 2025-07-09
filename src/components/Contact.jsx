@@ -338,18 +338,11 @@ const Contact = () => {
         </div>
 
         {/* Footer */}
-        <div 
-          className={`text-center pt-8 transition-all duration-1000 delay-800 ${
-            visibleElements.has('contact-footer') 
-              ? 'opacity-100 translate-y-0' 
-              : 'opacity-0 translate-y-10'
-          }`}
-          data-animate-id="contact-footer"
-        >
-          <p className="text-gray-400 font-light">
-            © 2025 Devi Rosa Aprilla • Made with 💝 and ∞ curiosity
-          </p>
-        </div>
+        <div className="text-center pt-8">
+        <p className="text-gray-400 font-light">
+          © {new Date().getFullYear()} Devi Rosa Aprilla. All rights reserved.
+        </p>
+      </div> 
       </div>
     </div>
   );
