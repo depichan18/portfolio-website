@@ -253,7 +253,7 @@ const Projects = () => {
       description: "An interactive web app documenting a personal 8-week journey to become a quantitative researcher — complete with tasks, tracking, and study tools in a playful, pastel-themed interface.",
       detailedDescription: "Quant Journey is a personalized learning platform designed to support my transition into quantitative research. It combines structured curriculum planning, progress tracking, and built-in study tools across topics like statistics, finance, and programming. With a vibrant pink-blue theme and engaging UI, the app offers daily task management, real-time analytics, and exportable reports. This tool reflects my self-guided exploration of quantitative finance and serves both as a study companion and a public portfolio of my learning path.",
       category: "personal",
-      tags: ["Cute", "Quant", "React", "Interactive", "Productivity", "Tailwind CSS"],
+      tags: ["Cute", "Quant", "React", "Productivity", "Tailwind CSS"],
       gradientColor: "from-purple-400 to-cyan-400",
       icon: "📘",
       link: "https://github.com/depichan18/quant-roadmap",

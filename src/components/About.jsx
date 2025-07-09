@@ -30,81 +30,81 @@ const About = () => {
   const certifications = [
     {
       id: 1,
-      title: "Google Data Analytics",
-      subtitle: "Certificate",
-      image: "/images/cert-google-analytics.jpg",
-      color: "from-purple-100 to-pink-100",
-      borderColor: "border-purple-200/50 hover:border-purple-300/70",
-      textColor: "text-purple-600",
-      emoji: "🏅"
-    },
-    {
-      id: 2,
-      title: "Python for Data Science",
-      subtitle: "IBM Coursera",
-      image: "/images/cert-python-datascience.jpg",
+      title: "Python Programming",
+      subtitle: "Codedex",
+      image: "/images/python-certificate.png",
       color: "from-blue-100 to-cyan-100",
       borderColor: "border-blue-200/50 hover:border-blue-300/70",
       textColor: "text-blue-600",
-      emoji: "💻"
+      emoji: "�"
     },
     {
-      id: 3,
+      id: 2,
       title: "Machine Learning",
-      subtitle: "Stanford Online",
-      image: "/images/cert-machine-learning.jpg",
+      subtitle: "Educative.io",
+      image: "/images/ML-certificate.png",
       color: "from-green-100 to-teal-100",
       borderColor: "border-green-200/50 hover:border-green-300/70",
       textColor: "text-green-600",
-      emoji: "📊"
+      emoji: "🤖"
+    },
+    {
+      id: 3,
+      title: "Java Programming",
+      subtitle: "JetBrains",
+      image: "/images/java-certifacate.webp",
+      color: "from-red-100 to-orange-100",
+      borderColor: "border-red-200/50 hover:border-red-300/70",
+      textColor: "text-red-600",
+      emoji: "☕"
     },
     {
       id: 4,
+      title: "Data Science",
+      subtitle: "Coursera",
+      image: "/images/python-certificate.png",
+      color: "from-purple-100 to-pink-100",
+      borderColor: "border-purple-200/50 hover:border-purple-300/70",
+      textColor: "text-purple-600",
+      emoji: "📊"
+    },
+    {
+      id: 5,
       title: "Financial Mathematics",
       subtitle: "MIT OpenCourseWare",
-      image: "/images/cert-financial-math.jpg",
+      image: "/images/ML-certificate.png",
       color: "from-orange-100 to-yellow-100",
       borderColor: "border-orange-200/50 hover:border-orange-300/70",
       textColor: "text-orange-600",
       emoji: "🎯"
     },
     {
-      id: 5,
-      title: "React Development",
-      subtitle: "Meta Professional",
-      image: "/images/cert-react-dev.jpg",
-      color: "from-cyan-100 to-blue-100",
-      borderColor: "border-cyan-200/50 hover:border-cyan-300/70",
-      textColor: "text-cyan-600",
-      emoji: "⚛️"
-    },
-    {
       id: 6,
-      title: "SQL Database Design",
-      subtitle: "Oracle University",
-      image: "/images/cert-sql.jpg",
+      title: "Quantitative Analysis",
+      subtitle: "Professional",
+      image: "/images/java-certifacate.webp",
       color: "from-indigo-100 to-purple-100",
       borderColor: "border-indigo-200/50 hover:border-indigo-300/70",
       textColor: "text-indigo-600",
-      emoji: "🗄️"
+      emoji: "📈"
     }
   ];
   
-  // Fungsi navigasi carousel
+  // Fungsi navigasi carousel (tidak diperlukan untuk 3 sertifikat)
   const nextCert = () => {
     setCurrentCertIndex((prev) => 
-      prev + 3 >= certifications.length ? 0 : prev + 3
+      prev + 2 >= certifications.length ? 0 : prev + 2
     );
   };
   
   const prevCert = () => {
     setCurrentCertIndex((prev) => 
-      prev - 3 < 0 ? Math.max(0, certifications.length - 3) : prev - 3
+      prev - 2 < 0 ? Math.max(0, certifications.length - 2) : prev - 2
     );
   };
   
   // Mendapatkan 3 sertifikat untuk ditampilkan
-  const visibleCertifications = certifications.slice(currentCertIndex, currentCertIndex + 3);
+  const visibleCertifications = certifications.slice(currentCertIndex, currentCertIndex + 2);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -403,7 +403,7 @@ const About = () => {
                 </div>
               </div>
               
-              <div className="grid grid-cols-3 gap-4">
+              <div className="grid grid-cols-2 gap-6">
                 {visibleCertifications.map((cert, index) => (
                   <div 
                     key={cert.id}
@@ -415,11 +415,11 @@ const About = () => {
                     style={{ transitionDelay: `${600 + index * 100}ms` }}
                   >
                     <div className="relative group cursor-pointer">
-                      <div className={`aspect-[4/3] bg-gradient-to-br ${cert.color} rounded-xl border ${cert.borderColor} transition-all duration-300 hover:scale-105 flex items-center justify-center overflow-hidden`}>
+                      <div className={`aspect-[4/3] bg-gradient-to-br ${cert.color} rounded-xl border ${cert.borderColor} transition-all duration-300 hover:scale-105 flex items-center justify-center overflow-hidden shadow-lg`}>
                         <img 
                           src={cert.image}
                           alt={`${cert.title} Certificate`}
-                          className="w-full h-full object-cover rounded-xl"
+                          className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-300"
                           onError={(e) => {
                             e.target.style.display = 'none';
                             e.target.nextElementSibling.style.display = 'flex';
@@ -442,14 +442,14 @@ const About = () => {
               </div>
 
               {/* Page indicator */}
-              {certifications.length > 3 && (
+              {certifications.length > 2 && (
                 <div className="flex justify-center mt-4 gap-2">
-                  {Array.from({ length: Math.ceil(certifications.length / 3) }, (_, i) => (
+                  {Array.from({ length: Math.ceil(certifications.length / 2) }, (_, i) => (
                     <button
                       key={i}
-                      onClick={() => setCurrentCertIndex(i * 3)}
+                      onClick={() => setCurrentCertIndex(i * 2)}
                       className={`w-2 h-2 rounded-full transition-all duration-200 ${
-                        Math.floor(currentCertIndex / 3) === i 
+                        Math.floor(currentCertIndex / 2) === i 
                           ? 'bg-purple-500 scale-125' 
                           : 'bg-purple-200 hover:bg-purple-300'
                       }`}
@@ -457,6 +457,7 @@ const About = () => {
                   ))}
                 </div>
               )}
+
             </div>
 
             <div 
