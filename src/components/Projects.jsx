@@ -143,9 +143,9 @@ const Projects = () => {
       link: "https://github.com/depichan18/depistore-manager",
       github: "https://github.com/depichan18/depistore-manager",
       images: [
-        "/images/depistore-1.png",
-        "/images/depistore-2.png", 
-        "/api/placeholder/600/400"
+        "./images/depistore-1.png",
+        "./images/depistore-2.png", 
+        "./api/placeholder/600/400"
       ],
       features: [
         "Product and stock management (CRUD)",
@@ -190,9 +190,9 @@ const Projects = () => {
       link: "https://github.com/depichan18/bookkeeping-app",
       github: "https://github.com/depichan18/bookkeeping-app",
       images: [
-        "/images/bookkeeping-1.png",
-        "/images/bookkeeping-2.png",
-        "/images/bookkeeping-3.png"
+        "./images/bookkeeping-1.png",
+        "./images/bookkeeping-2.png",
+        "./images/bookkeeping-3.png"
       ],
       features: [
         "Full double-entry bookkeeping",
@@ -259,9 +259,9 @@ const Projects = () => {
       link: "https://github.com/depichan18/quant-roadmap",
       github: "https://github.com/depichan18/quant-roadmap",
       images: [
-        "/images/quant-1.png",
-        "/images/quant-2.png",
-        "/images/quant-3.png"
+        "./images/quant-1.png",
+        "./images/quant-2.png",
+        "./images/quant-3.png"
       ],
       features: [
         "Visual progress tracker & daily checklist",
