@@ -32,7 +32,7 @@ const About = () => {
       id: 1,
       title: "Python Programming",
       subtitle: "Codedex",
-      image: "/images/python-certificate.png",
+      image: "/portfolio-website/images/python-certificate.png",
       color: "from-blue-100 to-cyan-100",
       borderColor: "border-blue-200/50 hover:border-blue-300/70",
       textColor: "text-blue-600",
@@ -42,7 +42,7 @@ const About = () => {
       id: 2,
       title: "Machine Learning",
       subtitle: "Educative.io",
-      image: "/images/ML-certificate.png",
+      image: "/portfolio-website/images/ML-certificate.png",
       color: "from-green-100 to-teal-100",
       borderColor: "border-green-200/50 hover:border-green-300/70",
       textColor: "text-green-600",
@@ -52,7 +52,7 @@ const About = () => {
       id: 3,
       title: "Java Programming",
       subtitle: "JetBrains",
-      image: "/images/java-certifacate.webp",
+      image: "/portfolio-website/images/java-certifacate.webp",
       color: "from-red-100 to-orange-100",
       borderColor: "border-red-200/50 hover:border-red-300/70",
       textColor: "text-red-600",
@@ -62,7 +62,7 @@ const About = () => {
       id: 4,
       title: "Data Science",
       subtitle: "Coursera",
-      image: "/images/python-certificate.png",
+      image: "/portfolio-website/images/python-certificate.png",
       color: "from-purple-100 to-pink-100",
       borderColor: "border-purple-200/50 hover:border-purple-300/70",
       textColor: "text-purple-600",
@@ -72,7 +72,7 @@ const About = () => {
       id: 5,
       title: "Financial Mathematics",
       subtitle: "MIT OpenCourseWare",
-      image: "/images/ML-certificate.png",
+      image: "/portfolio-website/images/ML-certificate.png",
       color: "from-orange-100 to-yellow-100",
       borderColor: "border-orange-200/50 hover:border-orange-300/70",
       textColor: "text-orange-600",
@@ -82,7 +82,7 @@ const About = () => {
       id: 6,
       title: "Quantitative Analysis",
       subtitle: "Professional",
-      image: "/images/java-certifacate.webp",
+      image: "/portfolio-website/images/java-certifacate.webp",
       color: "from-indigo-100 to-purple-100",
       borderColor: "border-indigo-200/50 hover:border-indigo-300/70",
       textColor: "text-indigo-600",
@@ -301,7 +301,7 @@ const About = () => {
               <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-cyan-100/30 hover:border-cyan-200/50 transition-all duration-300 group shadow-lg">
                 <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                   <img 
-                    src="/images/omits.png" 
+                    src="/portfolio-website/images/omits.png" 
                     alt="OMITS Logo" 
                     className="w-full h-full object-contain"
                     onError={(e) => {
@@ -317,7 +317,7 @@ const About = () => {
               <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-teal-100/30 hover:border-teal-200/50 transition-all duration-300 group shadow-lg">
                 <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                   <img 
-                    src="/images/ifls.png" 
+                    src="/portfolio-website/images/ifls.png" 
                     alt="IFLS Logo" 
                     className="w-full h-full object-contain"
                     onError={(e) => {
@@ -333,7 +333,7 @@ const About = () => {
               <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-blue-100/30 hover:border-blue-200/50 transition-all duration-300 group shadow-lg">
                 <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                   <img 
-                    src="/images/mpa.png" 
+                    src="/portfolio-website/images/mpa.png" 
                     alt="MPA Logo" 
                     className="w-full h-full object-contain"
                     onError={(e) => {
@@ -349,7 +349,7 @@ const About = () => {
               <div className="text-center p-6 bg-white/70 backdrop-blur-sm rounded-xl border border-green-100/30 hover:border-green-200/50 transition-all duration-300 group shadow-lg">
                 <div className="w-14 h-14 mx-auto mb-3 group-hover:scale-110 transition-transform duration-300">
                   <img 
-                    src="/images/quant.png" 
+                    src="/portfolio-website/images/quant.png" 
                     alt="Quantitative Finance Logo" 
                     className="w-full h-full object-contain"
                     onError={(e) => {
